@@ -21,10 +21,13 @@
             Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 
             ResultSet rset = null;
+            ResultSet rset1 = null;
             ResultSet rset2 = null;
 
-            int count = 0;
-            int count2 = 0;
+            int count = 1;
+            int count2 = 1;
+            int count3 = 0;
+            int row = 0;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = null;
@@ -37,6 +40,11 @@
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
 
+                String sql1 = "Select distinct chatId,sender,receiver from chat";
+                Statement stmnt1 = null;
+                stmnt1 = conn.createStatement();
+                rset1 = stmnt1.executeQuery(sql1);
+
                 String sql2 = "Select distinct chatId from chat";
                 Statement stmnt2 = null;
                 stmnt2 = conn.createStatement();
@@ -45,21 +53,34 @@
                 while (rset.next()) {
                     count++;
                 }
+                rset = stmnt.executeQuery(sql);
                 while (rset2.next()) {
                     count2++;
                 }
-                out.print(count + "<br>");
+                boolean newChat = false;
+                boolean newChat2 = false;
+                if (count == 1) {
+                    newChat = true;
+                }
+
+                if (newChat == true) {
+                    row = count2;
+                } else {
+                    while (rset1.next()) {
+                        count3++;
+                        if (rset1.getString("sender").equals(user) && rset1.getString("receiver").equals(sendTo)) {
+                            row = count3;
+                            break;
+                        }
+                    }
+                }
+
+                out.print(row + "<br>");
                 out.print(count2 + "<br>");
                 out.print(date + "<br>");
                 out.print(newMessage + "<br>");
                 out.print(user + "<br>");
                 out.print(sendTo + "<br>");
-
-                boolean newChat = false;
-                boolean newChat2 = false;
-                if (count == 0) {
-                    newChat = true;
-                }
 
             } catch (Exception ex) {
                 out.println("Unable to connect to database.");
@@ -82,14 +103,19 @@
                     PreparedStatement stmnt = null;
                     stmnt = conn.prepareStatement(sql3);
 
-                    stmnt.setString(1, String.valueOf(count2));
+                    stmnt.setString(1, String.valueOf(row));
                     stmnt.setString(2, String.valueOf(count));
                     stmnt.setString(3, newMessage);
                     stmnt.setTimestamp(4, date);
                     stmnt.setString(5, user);
                     stmnt.setString(6, sendTo);
-                    
+
                     stmnt.executeUpdate();
+
+                    String sql = "SELECT * FROM chat where sender = '" + user + "' and receiver = '" + sendTo + "'";
+                    Statement stmnt1 = null;
+                    stmnt1 = conn.createStatement();
+                    rset = stmnt1.executeQuery(sql);
 
                 } catch (Exception ex) {
                     out.println("Unable to send message.");
@@ -105,11 +131,12 @@
         <h1>Counselor : <%=sendTo%></h1>
         <div>
             <%
+
                 while (rset.next()) {
 
             %>
             <div>
-                <%                    out.print("content");                         %>
+                <%out.print(rset.getString("conversationContent"));%>
             </div>
             <%
                 }
@@ -122,7 +149,7 @@
                 <%                    out.print("<input type=\"text\" name=\"sendto\" value=\"" + sendTo + "\" hidden>  ");
                 %>
 
-                <input type="text" name="newMessage">  
+                <input type="text" id="messagetxt" name="newMessage">  
                 <input type="submit" hidden>
             </form>
         </div>
