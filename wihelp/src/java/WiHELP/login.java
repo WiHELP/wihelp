@@ -36,6 +36,7 @@ public class login extends HttpServlet {
         String b = request.getParameter("password");
         Statement stmt = null;
         String username = "";
+        String userSession = new String();
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -54,6 +55,7 @@ public class login extends HttpServlet {
                     if (b.equals(rset.getString("password"))){
                         HttpSession session = request.getSession(true);
                         session.setAttribute(username, a);
+                        session.setAttribute(userSession,username);
                         response.sendRedirect("homepage/homeview.jsp");   
                     }
                     else
