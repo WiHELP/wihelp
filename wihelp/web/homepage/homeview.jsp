@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="no-js" lang="">
+    
+
 
 
 <head>
@@ -33,21 +35,35 @@
     <div class="header-content clearfix"> <a class="logo" href="homepage.html">WiHELP</a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
-          <li><a href="homepage.html">Home Page</a></li>
-          <li><a href="/WiHELP/Login.html">Login</a></li>
-          <li><a href="/WiHELP/register.html">GET STARTED</a></li>
+          <li><a href="homeview.jsp">Home</a></li>
+          <!--<li><a href="/WiHELP/Login.html">Login</a></li>
+          <li><a href="/WiHELP/register.html">GET STARTED</a></li>-->
         </ul>
       </nav>
       <a href="#" class="nav-toggle">Menu<span></span></a> </div>
   </header>
+ <!-- header section -->
 
-  <div class="flex-container">
-  <!--<div>1 <a href="/WiHELP/register.html" class="btn btn-large">GET STARTED</a> </div></div>
-  <a href="/WiHELP/register.html" class="btn btn-large">GET STARTED</a> </div>
-  <div>2</div>
- 
-</div>
 
-        
+   <div class="col-md-10 col-md-offset-1 border" class="row" style="margin-top: 20%;background-color: " align="center">
+    
+        <div class="col-md-4"  >
+            <a href="">
+                <img src="images/chat.png" style="width:150px;height:150px;"><br><h2>One-to-One Conversation</h2>
+            </a>
+        </div>
+        <div class="col-md-4" >
+            <a href="">
+            <img src="images/forum.png" style="width:150px;height:150px;"><br><h2>Forum</h2>
+            </a>
+        </div>
+        <div class="col-md-4" >
+            <a href="">
+            <img src="images/share.png" style="width:150px;height:150px;"><br><h2>Share Event</h2>
+            </a>
+        </div>
+   
+   </div>
+
     </body>
 </html>
