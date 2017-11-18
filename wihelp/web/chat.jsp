@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %> 
-<%@ page import="java.io.*" %> 
+<%@ page import="java.io.*" %>
 
 <!DOCTYPE html>
 <html>
@@ -56,7 +56,7 @@
         </style>
 
         <%
-            
+
             String userSession = new String();
             String user = (String) session.getAttribute(userSession);
 
@@ -69,11 +69,11 @@
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
-                String sql = "Select * from chat where sender ='" + user + "' ";
+                String sql = "Select distinct receiver,conversationContent,conversationDate from chat where sender ='" + user + "' ";
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
-                
+
                 Statement stmnt2 = null;
                 String sql2 = "Select name from user join counselor on user.username = counselor.username";
                 stmnt2 = conn.createStatement();
@@ -89,67 +89,106 @@
         <h1>One-to-one Conversation</h1>
         <button id="myBtn">New chat</button>
 
-            <div id="myModal" class="modal">
+        <div id="myModal" class="modal">
 
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>
-                        <%
-                            while(rset2.next()){
-                                String to = rset2.getString("name");
-                                out.print("<a href=newChat.jsp?sendto="+to+"><button>"+to+"</button></a>");
-                            }
-                        %>
-                    </p>
-                </div>
-
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>
+                    <%
+                        while (rset2.next()) {
+                            String to = rset2.getString("name");
+                            out.print("<a href=newChat.jsp?sendto=" + to + "><button>" + to + "</button></a>");
+                        }
+                    %>
+                </p>
             </div>
-            <table border="1">
-                <%
-                    while (rset.next()) {
-                        String temp = rset.getString("receiver");
-                        Timestamp date = rset.getTimestamp("conversationDate");
-                        String chat = rset.getString("conversationContent");
-                %>
-                <tr>
-                    <td rowspan="2"><image src="" alt="Gambar orang">
-                    <td><%=temp%>
-                    <td><%=date%>
-                </tr>
-                <tr>
-                    <td colspan="2"><%=chat%>
-                </tr>
-                <%
+
+        </div>
+        <table border="1">
+            <%
+                String receiver = "";
+                String prevTemp = "";
+                Timestamp prevDate = null;
+                String prevChat = "";
+                int count = 0;
+
+                while (rset.next()) {
+                    String temp = rset.getString("receiver");
+                    Timestamp date = rset.getTimestamp("conversationDate");
+                    String chat = rset.getString("conversationContent");
+
+               //     out.print(count + " " + prevTemp + " " + temp + "<br>");
+                    if (!prevTemp.equals(temp)) {
+                        if (count == 0) {
+                            count++;
+                            receiver = temp;
+                            prevTemp = temp;
+                            prevDate = date;
+                            prevChat = chat;
+                            continue;
+                        }
+
+                       
+
+            %>
+            <tr>
+                <td rowspan="2"><image src="" alt="Gambar orang">
+                <td><%=prevTemp%>
+                <td><%=prevDate%>
+            </tr>
+            <tr>
+                <td colspan="2"><%=prevChat%>
+            </tr>
+            <%
+
+                receiver = temp;
+
+            } else if (rset.isLast()) {
+            %>
+            <tr>
+                <td rowspan="2"><image src="" alt="Gambar orang">
+                <td><%=temp%>
+                <td><%=date%>
+            </tr>
+            <tr>
+                <td colspan="2"><%=chat%>
+            </tr>
+            <%
                     }
-                %>
-            </table>
+                    count++;
+                    prevTemp = temp;
+                    prevDate = date;
+                    prevChat = chat;
+                }
+            %>
+        </table>
     </body>
     <script>
 // Get the modal
-            var modal = document.getElementById("myModal");
+        var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
+        var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
+        var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-            btn.onclick = function () {
-                modal.style.display = "unset";
-            }
+        btn.onclick = function () {
+            modal.style.display = "unset";
+        }
 
 // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
 
 // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
-        </script>
+        }
+    </script>
 </html>
