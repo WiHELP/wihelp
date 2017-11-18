@@ -105,6 +105,7 @@ ul li {
 	position: fixed;
 	width: 100%;
 	z-index: 999;
+        color: blue;
 }
 #header .header-content {
 	margin: 0 auto;

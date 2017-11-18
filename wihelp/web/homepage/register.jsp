@@ -5,32 +5,20 @@
     <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sign Up</title>
-<link rel="stylesheet" href="homepage/css/bootstrap.min.css">
-<link rel="stylesheet" href="homepage/css/flexslider.css">
-<link rel="stylesheet" href="homepage/css/jquery.fancybox.css">
-<link rel="stylesheet" href="homepage/css/main.css">
-<link rel="stylesheet" href="homepage/css/responsive.css">
-<link rel="stylesheet" href="homepage/css/font-icon.css">
-<link rel="stylesheet" href="homepage/css/animate.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/flexslider.css">
+<link rel="stylesheet" href="css/jquery.fancybox.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/font-icon.css">
+<link rel="stylesheet" href="css/animate.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link href="homepacss/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
     <!-- header section -->
-    <section class="banner" role="banner">
-        <header id="header">
-            <div class="header-content clearfix"> <a class="logo" href="/WiHELP/homepage/homepage.html">WiHELP</a>
-                <nav class="navigation" role="navigation">
-                <ul class="primary-nav">
-                    <li><a href="homepage/homepage.html">Home Page</a></li>
-                    <li><a href="Login.html">Login</a></li>
-                    <li><a href="register.html">GET STARTED</a></li>
-                </ul>
-                </nav>
-        <a href="#" class="nav-toggle">Menu<span></span></a> </div>
-        </header>
-    <!-- header section -->
+        <jsp:include page="homepageHeader.jsp"></jsp:include>
  
         <script>
         
