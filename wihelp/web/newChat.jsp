@@ -76,7 +76,7 @@
                 }
 
                 out.print(row + "<br>");
-                out.print(count2 + "<br>");
+                out.print(count + "<br>");
                 out.print(date + "<br>");
                 out.print(newMessage + "<br>");
                 out.print(user + "<br>");
@@ -92,7 +92,7 @@
             } else {
                 testMessage = true;
             }
-
+            String finalCount = "";
             if (testMessage == true) {
 
                 try {
@@ -103,8 +103,27 @@
                     PreparedStatement stmnt = null;
                     stmnt = conn.prepareStatement(sql3);
 
+                    if(count <10)
+                        finalCount = "000000000"+String.valueOf(count);
+                    else if(count <100)
+                        finalCount = "00000000"+String.valueOf(count);
+                    else if(count <1000)
+                        finalCount = "0000000"+String.valueOf(count);
+                    else if(count <10000)
+                        finalCount = "000000"+String.valueOf(count);
+                    else if(count <100000)
+                        finalCount = "00000"+String.valueOf(count);
+                    else if(count <1000000)
+                        finalCount = "0000"+String.valueOf(count);
+                    else if(count <10000000)
+                        finalCount = "000"+String.valueOf(count);
+                    else if(count <100000000)
+                        finalCount = "00"+String.valueOf(count);
+                    else if(count <1000000000)
+                        finalCount = "0"+String.valueOf(count);
+                    
                     stmnt.setString(1, String.valueOf(row));
-                    stmnt.setString(2, String.valueOf(count));
+                    stmnt.setString(2, finalCount);
                     stmnt.setString(3, newMessage);
                     stmnt.setTimestamp(4, date);
                     stmnt.setString(5, user);
