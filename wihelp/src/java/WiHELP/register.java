@@ -93,7 +93,7 @@ public class register extends HttpServlet {
             
             if(stat == true){
                 
-                response.sendRedirect("Login.html");
+                response.sendRedirect("homepage/Login.jsp");
             }
         }
         catch(Exception e){

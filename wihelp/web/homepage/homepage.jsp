@@ -19,18 +19,7 @@
 
 <body>
 <!-- header section -->
-<section class="banner" role="banner">
-  <header id="header">
-    <div class="header-content clearfix"> <a class="logo" href="homepage.html">WiHELP</a>
-      <nav class="navigation" role="navigation">
-        <ul class="primary-nav">
-          <li><a href="homepage.html">Home Page</a></li>
-          <li><a href="../Login.html">Login</a></li>
-          <li><a href="../register.html">GET STARTED</a></li>
-        </ul>
-      </nav>
-      <a href="#" class="nav-toggle">Menu<span></span></a> </div>
-  </header>
+<jsp:include page="homepageHeader.jsp"></jsp:include>
 
   <!-- banner text -->
   <div class="container">
@@ -38,7 +27,7 @@
       <div class="banner-text text-center">
         <h1>LET US HELP TOGETHER</h1>
         <p>Convenient, private online counseling and better forum. Anytime, anywhere.</p>
-        <a href="../register.html" class="btn btn-large">GET STARTED</a> </div>
+        <a href="register.jsp" class="btn btn-large">GET STARTED</a> </div>
       <!-- banner text --> 
     </div>
   </div>
