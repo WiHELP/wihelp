@@ -54,7 +54,7 @@
                                             
                         <div class="panel-body" >
 
-                        <form action="register" method="post" >
+                        <form action="../register" method="post" >
                             <div class="form-group">
                                 <label style="display:block;text-align:center;" for="name" >User Registration</label>
                                 <div style="display:block;text-align:center;">

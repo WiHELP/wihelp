@@ -14,8 +14,8 @@
         <title>JSP Page</title>
 
         <%
-            String userSession = new String();
-            String user = (String) session.getAttribute(userSession);
+            
+            String user = (String) session.getAttribute("userSession");
             String sendTo = request.getParameter("sendto");
             String newMessage = request.getParameter("newMessage");
             Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
@@ -35,7 +35,7 @@
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
-                String sql = "SELECT * FROM chat where sender = '" + user + "' and receiver = '" + sendTo + "'";
+                String sql = "SELECT * FROM chat where sender = '" + user + "' and receiver = '" + sendTo + "' or sender = '"+sendTo+"' and receiver = '"+user+"'";
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);

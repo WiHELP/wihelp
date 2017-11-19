@@ -53,7 +53,7 @@ public class register extends HttpServlet {
             boolean stat = false;
             if(user.equals("patient")){
                 
-                String sql = "INSERT into user values(?,?,?,?,?)";
+                String sql = "INSERT into user values(?,?,?,?,?,?)";
                 stmt = conn.prepareStatement(sql);
                 
                 stmt.setString(1, username);
@@ -61,6 +61,7 @@ public class register extends HttpServlet {
                 stmt.setString(3, name);
                 stmt.setString(4,email);
                 stmt.setInt(5, age);
+                stmt.setString(6, "patient");
                 
                 stmt.executeUpdate();
                 

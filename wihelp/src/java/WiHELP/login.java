@@ -34,9 +34,9 @@ public class login extends HttpServlet {
         PrintWriter out = response.getWriter();
         String a = request.getParameter("username");
         String b = request.getParameter("password");
+        String c = "";
         Statement stmt = null;
         String username = "";
-        String userSession = new String();
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -49,12 +49,13 @@ public class login extends HttpServlet {
             
             
             while(rset.next()) {   // Move the cursor to the next row               
-              //  out.print(rset.getString("username"));
+              c = rset.getString("userType");
                 if(a.equals(rset.getString("username"))){
                     //out.print(rset.getString("success"));
                     if (b.equals(rset.getString("password"))){
                         HttpSession session = request.getSession(true);
-                        session.setAttribute(userSession,a);
+                        session.setAttribute("userSession",a);
+                        session.setAttribute("userType",c);
                         response.sendRedirect("homepage/homeview.jsp");   
                     }
                     else
