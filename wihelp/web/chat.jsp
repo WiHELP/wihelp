@@ -14,7 +14,9 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>One-to-One Communication</title>
+
+        
 
         <style>
             /* The Modal (background) */
@@ -91,6 +93,24 @@
 
     </head>
     <body>
+        <!--Header section-->
+        <section class="banner" role="banner">
+            <header id="header">
+                <div class="header-content clearfix"> <a class="logo" href="homepage.html">WiHELP</a>
+                    <nav class="navigation" role="navigation">
+                    <ul class="primary-nav">
+                        <li><a href="homeview.jsp">Home</a></li>
+                        <li class="tab active"><a href="/WiHELP/chat.jsp">One-to-One Conversation</a></li>
+                        <li><a href="">Forum</a></li>
+                        <li><a href="">Share Event</a></li>
+                        <li><a href="">Screening Test</a></li>
+                    </ul>
+                    </nav>
+                <a href="#" class="nav-toggle">Menu<span></span></a> 
+                </div>
+            </header>
+        
+        
         <h1>One-to-one Conversation</h1>
         <button id="myBtn">New chat</button>
 
