@@ -7,9 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %> 
 <%@ page import="java.io.*" %>
+<%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -57,8 +59,11 @@
 
         <%
 
-            String userSession = new String();
-            String user = (String) session.getAttribute(userSession);
+            String user = (String) session.getAttribute("userSession");
+
+           
+
+        
 
             ResultSet rset = null;
             ResultSet rset2 = null;
