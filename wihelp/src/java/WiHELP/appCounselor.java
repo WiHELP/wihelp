@@ -56,6 +56,7 @@ public class appCounselor extends HttpServlet {
                 stmt1.setString(3, rset.getString("name"));
                 stmt1.setString(4, rset.getString("email"));
                 stmt1.setInt(5, rset.getInt("age"));
+                stmt1.setString(5, "counselor");
                 
             stmt1.executeUpdate();
             out.print("test");
