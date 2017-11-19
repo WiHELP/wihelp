@@ -40,7 +40,8 @@
           <li><a href="/WiHELP/register.html">GET STARTED</a></li>-->
         </ul>
       </nav>
-      <a href="#" class="nav-toggle">Menu<span></span></a> </div>
+      <a href="#" class="nav-toggle">Menu<span></span></a> 
+    </div>
   </header>
 
  <!-- header section -->
@@ -49,7 +50,7 @@
    <div class="col-md-10 col-md-offset-1 border" class="row" style="margin-top: 20%;background-color: " align="center">
     
         <div class="col-md-4"  >
-            <a href="">
+            <a href="../chat.jsp">
                 <img src="images/chat.png" style="width:150px;height:150px;"><br><h2>One-to-One Conversation</h2>
             </a>
         </div>
