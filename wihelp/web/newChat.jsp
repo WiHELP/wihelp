@@ -131,7 +131,7 @@
 
                     stmnt.executeUpdate();
 
-                    String sql = "SELECT * FROM chat where sender = '" + user + "' and receiver = '" + sendTo + "'";
+                    String sql = "SELECT * FROM chat where sender = '" + user + "' and receiver = '" + sendTo + "' or sender = '"+sendTo+"' and receiver = '"+user+"'";
                     Statement stmnt1 = null;
                     stmnt1 = conn.createStatement();
                     rset = stmnt1.executeQuery(sql);

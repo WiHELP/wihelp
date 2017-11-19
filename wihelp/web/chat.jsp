@@ -11,7 +11,7 @@
 
 <!DOCTYPE html>
 <html>
-    
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -61,12 +61,9 @@
 
             String user = (String) session.getAttribute("userSession");
 
-           
-
-        
-
             ResultSet rset = null;
             ResultSet rset2 = null;
+            int isOnly = 0;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = null;
@@ -77,6 +74,11 @@
                 String sql = "Select distinct receiver,conversationContent,conversationDate from chat where sender ='" + user + "' ";
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
+                rset = stmnt.executeQuery(sql);
+
+                while (rset.next()) {
+                    isOnly++;
+                }
                 rset = stmnt.executeQuery(sql);
 
                 Statement stmnt2 = null;
@@ -117,16 +119,19 @@
                 Timestamp prevDate = null;
                 String prevChat = "";
                 int count = 0;
+                //out.print(isOnly + "<br>");
 
                 while (rset.next()) {
                     String temp = rset.getString("receiver");
                     Timestamp date = rset.getTimestamp("conversationDate");
                     String chat = rset.getString("conversationContent");
 
-               //     out.print(count + " " + prevTemp + " " + temp + "<br>");
+                    
+                //    out.print(count + " " + prevTemp + " " + temp + "<br>");
                     if (!prevTemp.equals(temp)) {
-                        if (count == 0) {
-                            count++;
+                        count++;
+                        if (count == 1) {
+
                             receiver = temp;
                             prevTemp = temp;
                             prevDate = date;
@@ -134,7 +139,6 @@
                             continue;
                         }
 
-                       
 
             %>
             <tr>
@@ -161,7 +165,7 @@
             </tr>
             <%
                     }
-                    count++;
+
                     prevTemp = temp;
                     prevDate = date;
                     prevChat = chat;
