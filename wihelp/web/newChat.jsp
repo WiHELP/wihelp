@@ -16,7 +16,9 @@
         <%
             
             String user = (String) session.getAttribute("userSession");
+            String user2 = (String) session.getAttribute("userSessionName");
             String sendTo = request.getParameter("sendto");
+            String sendTo2 = request.getParameter("sendto2");
             String newMessage = request.getParameter("newMessage");
             Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 
@@ -60,18 +62,27 @@
                 boolean newChat = false;
                 boolean newChat2 = false;
                 if (count == 1) {
-                    newChat = true;
+                    newChat = true; //kiranya dua pihak belom pernah start conversation with each other
                 }
 
                 if (newChat == true) {
-                    row = count2;
+                    row = count2;  //bg kat dia chatid baru
                 } else {
+                    String prevSender = "";
+                    String prevReceiver = "";
                     while (rset1.next()) {
+                        
+                        if (rset1.getString("sender").equals(prevSender) && rset1.getString("receiver").equals(prevReceiver) || rset1.getString("receiver").equals(prevSender) && rset1.getString("sender").equals(prevReceiver)) {
+                            row = count3;
+                            continue;
+                        }
                         count3++;
-                        if (rset1.getString("sender").equals(user) && rset1.getString("receiver").equals(sendTo)) {
+                        if (rset1.getString("sender").equals(user) && rset1.getString("receiver").equals(sendTo) || rset1.getString("receiver").equals(user) && rset1.getString("sender").equals(sendTo)) {
                             row = count3;
                             break;
                         }
+                        prevSender = rset1.getString("sender");
+                        prevReceiver = rset1.getString("receiver");
                     }
                 }
 
@@ -147,7 +158,7 @@
     <%
     %>
     <body>
-        <h1>Counselor : <%=sendTo%></h1>
+        <h1>Counselor : <%=sendTo2%></h1>
         <div>
             <%
 
@@ -165,12 +176,18 @@
         </div>
         <div>
             <form action="newChat.jsp">
-                <%                    out.print("<input type=\"text\" name=\"sendto\" value=\"" + sendTo + "\" hidden>  ");
+                <%  
+                    out.print("<input type=\"text\" name=\"sendto\" value=\"" + sendTo + "\" hidden>  ");                  
+                    out.print("<input type=\"text\" name=\"sendto2\" value=\"" + sendTo2 + "\" hidden>  ");
                 %>
 
                 <input type="text" id="messagetxt" name="newMessage">  
                 <input type="submit" hidden>
             </form>
+                
+                <div>
+                    <a href="chat.jsp"><button>Back</button></a>
+                </div>
         </div>
     </body>
 </html>
