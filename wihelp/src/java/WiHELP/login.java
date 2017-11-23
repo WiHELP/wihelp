@@ -54,7 +54,7 @@ public class login extends HttpServlet {
             while (rset2.next()) {
                 if (a.equals(rset2.getString("adminId"))) {
                     if (b.equals(rset2.getString("password"))) {
-                        response.sendRedirect("appCounselor");
+                        response.sendRedirect("approve");
                     }
                 }
 
