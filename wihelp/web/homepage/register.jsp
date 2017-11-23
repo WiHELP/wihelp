@@ -3,102 +3,119 @@
 <!DOCTYPE html>
 <html>
     <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sign Up</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/flexslider.css">
-<link rel="stylesheet" href="css/jquery.fancybox.css">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="css/font-icon.css">
-<link rel="stylesheet" href="css/animate.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<link href="homepacss/bootstrap.min.css" rel="stylesheet">
-</head>
+        <title>WiHELP</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    </head>
 
-<body>
-    <!-- header section -->
+    <body>
+        <!-- header section -->
         <jsp:include page="homepageHeader.jsp"></jsp:include>
- 
+
         <script>
-        
-        function licenseVis(){
-            var x = document.getElementById("patient").checked;
-            var y = document.getElementById("counselor").checked;
-            
-            
-            if(x == true){
-                document.getElementById("license").disabled = true;
+
+            function licenseVis() {
+                var x = document.getElementById("patient").checked;
+                var y = document.getElementById("counselor").checked;
+
+
+                if (x == true) {
+                    document.getElementById("license").disabled = true;
+                }
+                if (y == true) {
+                    document.getElementById("license").disabled = false;
+                }
+
             }
-            if(y == true){
-                document.getElementById("license").disabled = false;
-            }
-            
-        }
         </script>
-        
+
     </head>
 
 <body> 
     <br>
     <div class="container-fluid">
-       <!-- <div class="panel panel-success">
-            <div class="panel-heading" align="center">
-                <h4><b><font color="black" style="font-family: fantasy;">Create Your Profile</font> </b></h4>
-            </div>-->
-            <div class="panel-body" align="center">
-                  
-                <div class="container " style="margin-top: 10%; margin-bottom: 10%;">
-    
-                    <div class="panel panel-success" style="max-width: 35%;" align="left">
-                                            
-                        <div class="panel-body" >
+        <!-- <div class="panel panel-success">
+             <div class="panel-heading" align="center">
+                 <h4><b><font color="black" style="font-family: fantasy;">Create Your Profile</font> </b></h4>
+             </div>-->
+        <div class="panel-body" align="center">
+
+            <div class="container " style="margin-top: 10%; margin-bottom: 10%;">
+
+                <div class="panel panel-success" style="max-width: 35%;" align="left">
+
+                    <div class="panel-heading form-group" style="max-height: 60%;">
+                        <h3 class="major">USER REGISTRATION</h3>
+                    </div>
+
+                    <div class="panel-body" >
 
                         <form action="../register" method="post" >
                             <div class="form-group">
-                                <label style="display:block;text-align:center;" for="name" >User Registration</label>
                                 <div style="display:block;text-align:center;">
-                                    <input type="radio"  name="userType" id="patient" value="patient" checked required="required" onclick="licenseVis()"> Patient
-                                <input type="radio"  name="userType" id="counselor" value="counselor" onclick="licenseVis()"> Counselor
+                                    <input type="radio" id="patient" name="userType" checked required="required" onclick="licenseVis()">
+                                    <label for="patient">Patient</label>
+                                    <input type="radio" id="counselor" name="userType" checked required="required" onclick="licenseVis()">
+                                    <label for="counselor">Counselor</label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="name">Name</label> 
-                                <input type="text" class="form-control" name="name" id="name" required="required">  
+
+                            <div>
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" required="required" />
                             </div>
-                            <div class="form-group">
-                                <label for="year">Age</label> 
-                                <input type="text" class="form-control" name="age" id="age">
+                            <BR>
+                            <div>
+                                <label for="year">Age</label>
+                                <input type="text" name="age" id="age" />
                             </div>
-                            <div class="form-group">
-                                <label for="Address">Address</label> 
-                                <input type="text" class="form-control" name="address" id="address">
+                            <BR>
+                            <div>
+                                <label for="Address">Address</label>
+                                <input type="text" name="address" id="address" />
                             </div>
-                            <div class="form-group">
-                                <label for="Email">Email</label> 
-                                <input type="email" class="form-control" name="email" id="email">
+                            <BR>
+                            <div>
+                                <label for="Email">Email</label>
+                                <input type="email" name="email" id="email" required="required" />
                             </div>
-                            <div class="form-group">
-                                <label for="Username">Username</label> 
-                                <input type="text" class="form-control" name="username" id="username" onkeyup="validateExist(this.value)">
-                                <div id="exist" class="" style="display:none">*This is required</div>
+                            <BR>
+                            <div>
+                                <label for="username">Username</label>
+                                <input type="text" name="username" id="username" onkeyup="validateExist(this.value)" />
+                                <div id="exist" class="" style="display:none">*Already exist</div>
                             </div>
-                            <div class="form-group">
-                                <label for="Password">Password</label> 
-                                <input type="password" class="form-control" name="password" id="password">
+                            <BR>
+                            <div>
+                                <label for="Password">Password</label>
+                                <input type="password" name="password" id="password" />
                             </div>
-                            <div class="form-group">
-                                <label for="License">License</label> 
-                                <input type="text" class="form-control" name="license" id="license" disabled required>
+                            <BR>
+                            <div>
+                                <label for="License">License</label>
+                                <input type="text" name="license" id="license" disabled required/>
                             </div>
-                            
-                            <input type="submit" style="width: 100%; font-size:1.1em;" class="btn btn-large btn btn-success btn-lg btn-block" value="Create" >                       
+                            <BR>
+                            <input type="submit" class="special" value="Create" >
                         </form>
-                        </div>
                     </div>
                 </div>
-             </div>
+            </div>
         </div>
     </div>
-    </body>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+</body>
 </html>

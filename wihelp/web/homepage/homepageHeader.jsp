@@ -6,16 +6,24 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<section class="banner" role="banner">
-  <header id="header">
-    <div class="header-content clearfix"> <a class="logo" href="homepage.jsp">WiHELP</a>
-      <nav class="navigation" role="navigation">
-        <ul class="primary-nav">
-          <li><a href="homepage.jsp">Home Page</a></li>
-          <li><a href="Login.jsp">Login</a></li>
-          <li><a href="register.jsp">GET STARTED</a></li>
-          <li><a href="LoginAdmin.jsp">Admin</a></li>
+<!-- Header -->
+<header id="header" class="alt">
+    <h2><a href="homepage.jsp">WiHELP</a></h2>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <div class="inner">
+        <h2>Menu</h2>
+        <ul class="links">
+            <li><a href="homepage.jsp">Home</a></li>
+            <li><a href="Login.jsp">Log In</a></li>
+            <li><a href="register.jsp">GET STARTED</a></li>
         </ul>
-      </nav>
-      <a href="#" class="nav-toggle">Menu<span></span></a> </div>
-  </header>
+        <a href="#" class="close">Close</a>
+    </div>
+</nav>
+
