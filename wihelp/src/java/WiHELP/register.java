@@ -49,10 +49,10 @@ public class register extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection(
                "jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
-           
+           out.print(user);
             boolean stat = false;
             if(user.equals("patient")){
-                
+               
                 String sql = "INSERT into user values(?,?,?,?,?,?)";
                 stmt = conn.prepareStatement(sql);
                 
@@ -76,6 +76,7 @@ public class register extends HttpServlet {
                 stat = true;
             }
             else if(user.equals("counselor")){
+                 
                 String sql = "INSERT into counselorpending values(?,?,?,?,?,?,?)";
                 stmt = conn.prepareStatement(sql);
                 

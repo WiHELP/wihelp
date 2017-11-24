@@ -81,7 +81,10 @@
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <form action="createForum">
-                        
+                        Forum title:<input type="text" name="forumtitle">
+                        Forum body:<input type="text" name="forumContent">
+                        <input type="text" name="">
+                        <input type="submit">
                     </form>
                 </div>
 
