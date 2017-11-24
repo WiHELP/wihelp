@@ -5,7 +5,6 @@ package WiHELP;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,43 +29,55 @@ public class login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         PrintWriter out = response.getWriter();
         String a = request.getParameter("username");
         String b = request.getParameter("password");
         String c = "";
         Statement stmt = null;
+        Statement stmt2 = null;
         String username = "";
-        
-        try{
+
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-           
+
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
             stmt = conn.createStatement();
-            
+
             String str1 = "select * from user";
             ResultSet rset = stmt.executeQuery(str1);
-            
-            
-            while(rset.next()) {   // Move the cursor to the next row               
-              c = rset.getString("userType");
-                if(a.equals(rset.getString("username"))){
-                    //out.print(rset.getString("success"));
-                    if (b.equals(rset.getString("password"))){
-                        HttpSession session = request.getSession(true);
-                        session.setAttribute("userSession",a);
-                        session.setAttribute("userType",c);
-                        response.sendRedirect("homepage/homeview.jsp");   
+
+            stmt2 = conn.createStatement();
+            String str2 = "select * from admin";
+            ResultSet rset2 = stmt2.executeQuery(str2);
+
+            while (rset2.next()) {
+                if (a.equals(rset2.getString("adminId"))) {
+                    if (b.equals(rset2.getString("password"))) {
+                        response.sendRedirect("approve");
                     }
-                    else
-                        ;
                 }
-                else
-                   ;        
-            }  
-             response.sendRedirect("homepage/Login.jsp");
-        }
-        catch(Exception e){
+
+            }
+
+            while (rset.next()) {   // Move the cursor to the next row               
+                c = rset.getString("userType");
+                if (a.equals(rset.getString("username"))) {
+                    //out.print(rset.getString("success"));
+                    if (b.equals(rset.getString("password"))) {
+                        String d = rset.getString("name");
+                        HttpSession session = request.getSession(true);
+                        session.setAttribute("userSession", a);
+                        session.setAttribute("userSessionName", d);
+                        session.setAttribute("userType", c);
+                        response.sendRedirect("homepage/homeview.jsp");
+                    } else
+                        ;
+                } else
+                   ;
+            }
+            response.sendRedirect("homepage/Login.jsp");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

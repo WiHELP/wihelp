@@ -16,6 +16,10 @@
         <servlet-name>appCounselor</servlet-name>
         <servlet-class>WiHELP.appCounselor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>rejCounselor</servlet-name>
+        <servlet-class>WiHELP.rejCounselor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>appCounselor</servlet-name>
         <url-pattern>/appCounselor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>rejCounselor</servlet-name>
+        <url-pattern>/rejCounselor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
