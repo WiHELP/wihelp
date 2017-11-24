@@ -22,6 +22,16 @@
     </head>
 
     <body>
+
+        <!-- Scripts -->
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
+
+
         <div id="page-wrapper">
 
             <!-- Header -->
@@ -52,12 +62,17 @@
 
                             <div class="4u">
                                 <span class="image fit">
-                                    <a href="../chat.jsp">
+                                    <a href="../chat.jsp"/>
                                         <img src="images/chat.png" alt="" />
-                                    </a>
                                 </span>
                             </div>
-                            <div class="4u"><span class="image fit"><img src="images/forum.png" alt="" /></span></div>
+                            <div class="4u">
+                                <span class="image fit">
+                                    <a href="../listevent.jsp"/>
+                                    <img src="images/forum.png" alt="" />
+                                </span>
+                            </div>
+
                             <div class="4u$"><span class="image fit"><img src="images/share.png" alt="" /></span></div>
 
                         </div>
@@ -66,15 +81,5 @@
             </section>
 
         </div>
-
-        <!-- Scripts -->
-        <script src="assets/js/skel.min.js"></script>
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-        <script src="assets/js/main.js"></script>
-
-
     </body>
 </html>
