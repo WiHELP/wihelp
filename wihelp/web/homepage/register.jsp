@@ -57,9 +57,9 @@
                         <form action="../register" method="post" >
                             <div class="form-group">
                                 <div style="display:block;text-align:center;">
-                                    <input type="radio" id="patient" name="userType" checked required="required" onclick="licenseVis()">
+                                    <input type="radio" id="patient" name="userType" checked required="required" value="patient" onclick="licenseVis()">
                                     <label for="patient">Patient</label>
-                                    <input type="radio" id="counselor" name="userType" checked required="required" onclick="licenseVis()">
+                                    <input type="radio" id="counselor" name="userType" required="required" value="counselor" onclick="licenseVis()">
                                     <label for="counselor">Counselor</label>
                                 </div>
                             </div>
