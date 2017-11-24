@@ -207,7 +207,7 @@
                             while(rset2.next()){
                                 name = rset2.getString("name");
                             }
-                            out.print("<a href=newChat.jsp?sendto=" + prevReceiver + "&sendto2=" + name + ">" + prevChat + "</a>");
+                            out.print("<a href=newChat.jsp?sendto=" + prevSender + "&sendto2=" + name + ">" + prevChat + "</a>");
                         } else if (prevSender.equals(user)) {
                             try {
                                     Class.forName("com.mysql.jdbc.Driver");
@@ -225,7 +225,7 @@
                             while(rset2.next()){
                                 name = rset2.getString("name");
                             }
-                            out.print("<a href=newChat.jsp?sendto=" + prevSender + "&sendto2=" + name + ">" + prevChat + "</a>");
+                            out.print("<a href=newChat.jsp?sendto=" + prevReceiver + "&sendto2=" + name + ">" + prevChat + "</a>");
                         }
                         %>
                         
