@@ -10,7 +10,7 @@
 -->
 <html>
     <head>
-        <title>Elements - Solid State by HTML5 UP</title>
+        <title>WiHELP</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -19,8 +19,7 @@
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
         <%
-            
-            
+
             ResultSet rset = null;
 
             try {
@@ -28,7 +27,7 @@
                 Connection conn = DriverManager.getConnection(
                         "jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
 
-                String sql = "SELECT eventName, eventDate from event";
+                String sql = "SELECT eventName, eventDate, eventLocation, description from event";
                 Statement stmt = null;
                 stmt = conn.createStatement();
                 rset = stmt.executeQuery(sql);
@@ -53,7 +52,7 @@
         <!-- Page Wrapper -->
         <div id="page-wrapper">
 
-            <header id="header" class="alt">
+            <header id="header">
                 <h2><a href="homepage/homeview.jsp">WiHELP</a></h2>
                 <nav>
                     <a href="#menu">Menu</a>
@@ -74,7 +73,7 @@
                 </div>
             </nav>
 
-         
+
             <!-- Content -->
             <div class="wrapper">
                 <div class="inner">
@@ -88,48 +87,35 @@
                                 <thead>
                                     <tr>
                                         <th>Event Name</th>
-                                        <th>Date</th>                                            
+                                        <th>Date</th> 
+                                        <th>Description</th> 
+                                        <th>Location</th>                                     
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <%
-                                    while(rset.next()){
-                                %>
-                                
+                                    <%
+                                        while (rset.next()) {
+                                    %>
+
                                     <tr>
                                         <td><%=rset.getString("eventName")%></td>      
                                         <td><%=rset.getString("eventDate")%></td>
+                                        <td><%=rset.getString("description")%></td>
+                                        <td><a href="#"><%=rset.getString("eventLocation")%></a></td>
 
                                     </tr>
                                     <%
                                         }
                                     %>
-                                    <tr>
-                                        <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                                        <td>Item Two</td>
 
-                                    </tr>
-                                    <tr>
-                                        <td> Morbi faucibus arcu accumsan lorem.</td>    
-                                        <td>Item Three</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>Vitae integer tempus condimentum.</td>  
-                                        <td>Item Four</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>Ante turpis integer aliquet porttitor.</td>     
-                                        <td>Item Five</td>
-
-                                    </tr>
                                 </tbody>                                    
                             </table>
                             <ul class="actions">
-                                <li><a href="formEvent.jsp" class="button">Share Event</a></li>
+                                <li><button id="myBtn" class="button">Share Event</button></li>
                             </ul>
-                        </div>
+
+                            <jsp:include page="formEvent.jsp"></jsp:include>
+
                     </section>                                        
                 </div>
             </div>
@@ -140,13 +126,12 @@
         <section id="footer">
             <div class="inner">
                 <ul class="copyright">
-                    <li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+
                 </ul>
             </div>
         </section>
 
     </div>
-
 
 </body>
 </html>

@@ -55,31 +55,28 @@
                 </div>
             </nav>
 
-            <section id="wrapper">
-                <section>
-                    <div class="box alt" style="margin-top: 10%;">
-                        <div class="row uniform">
+            <div class="wrapper">
+                
+                <div class="inner"> 
+                    <h1 class="major"><center>WELCOME, USERNAME</center></h1>
+                    <section>
+                        <div class="box alt" style="margin-top: 10%;">
+                            <div class="row uniform">
 
-                            <div class="4u">
-                                <span class="image fit">
-                                    <a href="../chat.jsp"/>
-                                        <img src="images/chat.png" alt="" />
-                                </span>
+                                <div class="4u">
+                                    <span class="image fit">
+                                        <a href="../chat.jsp">
+                                            <img src="images/chat.png" alt="" />
+                                        </a>
+                                    </span>
+                                </div>
+                                <div class="4u"><span class="image fit"><img src="images/forum.png" alt="" /></span></div>
+                                <div class="4u"><span class="image fit"><a href="../listevent.jsp"><img src="images/share.png" alt="" /></a></span></div>
+
                             </div>
-                            <div class="4u">
-                                <span class="image fit">
-                                    <a href="../listevent.jsp"/>
-                                    <img src="images/forum.png" alt="" />
-                                </span>
-                            </div>
-
-                            <div class="4u$"><span class="image fit"><img src="images/share.png" alt="" /></span></div>
-
                         </div>
-                    </div>
-                </section>
-            </section>
-
-        </div>
+                    </section>
+                </div>
+            </div>
     </body>
 </html>
