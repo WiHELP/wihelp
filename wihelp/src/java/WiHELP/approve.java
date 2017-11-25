@@ -5,7 +5,6 @@ package WiHELP;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -27,8 +26,6 @@ public class approve extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,98 +33,100 @@ public class approve extends HttpServlet {
         Statement stmt = null;
         Statement stmt2 = null;
         String username = "";
-       
-        try{
+
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-           
+
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
             stmt = conn.createStatement();
             stmt2 = conn.createStatement();
-            
+
             String str1 = "select * from counselorpending";
             ResultSet rset = stmt.executeQuery(str1);
-            
+
             String str2 = "select * from lkm";
-            
-            
+
             out.print("<head>"
-                        + "<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n" +
-"    </head>"
-                        + "<body>\n" +
-"        <div class=\"container container-fluid\">\n" +
-"            <div align=\"center\" class=\"jumbotron\">\n" +
-"                <h1><b><font color=\"black\" style=\"font-family: fantasy;\">WiHELP</font> </b></h1>\n" +
-"            </div>\n" +
-"            <div class=\"panel panel-body\">\n" +
-"                <div class=\"col-md-10\">\n" +
-"                    <table class=\"table\">\n");
-                                        out.print("<tr>"
-                                        + "<th>Name"
-                                        + "<th>License"
-                                        + "<th>Status"
-                                        + "<th>Match found in LKM database"
-                                        + "<th>Match found in LKM database"
-                                        + "</tr>");
-                            while(rset.next()){
-                                
-                                ResultSet rset2 = stmt2.executeQuery(str2);
-                                String name = rset.getString("name");
-                                String license = rset.getString("license");
-                                String status = rset.getString("status");
-                                out.print("<tr>"
-                                        + "<td>"
-                                        + name
-                                        + "<td>"
-                                        + license
-                                        + "<td>"
-                                        + status
-                                        + "<td>");
-                                        boolean test = false;
-                                        while(rset2.next()){
-                                            if(license.equals(rset2.getString("KB_No")))
-                                                test = true;
-                                        }
-                                        if(test == true){
-                                            out.print("Found");
-                                        }
-                                        else
-                                            out.print("Not Found");
-                                        
-                                        if(status.equals("Pending"))
-                                        out.print("<div class=\"\">"
-                                                + "<td>"
-                                                + "<form action=\"appCounselor\">"
-                                                + "<input type=\"text\" name=\"license\" value="+license+" hidden></input>"
-                                                + "<input type=\"submit\" value=\"Approve\"></input>"
-                                                + "</form>"
-                                                + "<form action=\"rejCounselor\">"
-                                                + "<input type=\"text\" name=\"license\" value="+license+" hidden></input>"
-                                                + "<input type=\"submit\" value=\"Reject\"></input>"
-                                                + "</form>"
-                                                + "</div>"
-                                                + "</tr>");
-                                        else if(status.equals("Approved"))
-                                        out.print("<td>"
-                                                + "APPROVED"
-                                                + "</tr>");
-                                        else if(status.equals("Rejected"))
-                                        out.print("<td>"
-                                                + "Rejected"
-                                                + "</tr>");
-                            }
-        out.print("\n" +
-"                    </table>\n" +
-"                </div>\n" +
-"                <div>\n" +
-"                    \n" +
-"                </div>\n" +
-"            <div>\n" +
-"        </div>\n" +
-"    </body>");
-             
-            
-        }
-        catch(Exception e){
+                    + "<link rel=\"stylesheet\" href=\"assets/css/main.css\" />"
+                    + "</head>"
+                    + "<body>\n"
+                    + "<jsp:include page=\"homepage/homepageHeader.jsp\"></jsp:include>"
+                    + " <div class=\"wrapper\">"
+                    + "  <div class=\"inner\">"
+                    + "   <section>"
+                    + "     <h1 class=\"major\"><center>WiHELP</center></h1>"
+                    + "         <div class=\"table-wrapper\">"
+                    + "            <table class=\"alt\">"
+                    + "                <thead>");
+                   
+            out.print("<tr>"
+                    + "<th/>Name"
+                    + "<th/>License"
+                    + "<th/>Status"
+                    + "<th/>Match found in LKM database"
+                    + "<th/>Match found in LKM database"
+                    + "</tr>");
+            while (rset.next()) {
+
+                ResultSet rset2 = stmt2.executeQuery(str2);
+                String name = rset.getString("name");
+                String license = rset.getString("license");
+                String status = rset.getString("status");
+                out.print("<tbody>"
+                        +"<tr>"
+                        + "<td>"
+                        + name
+                        + "<td>"
+                        + license
+                        + "<td>"
+                        + status
+                        + "<td>");
+                boolean test = false;
+                while (rset2.next()) {
+                    if (license.equals(rset2.getString("KB_No"))) {
+                        test = true;
+                    }
+                }
+                if (test == true) {
+                    out.print("Found");
+                } else {
+                    out.print("Not Found");
+                }
+
+                if (status.equals("Pending")) {
+                    out.print("<div class=\"\">"
+                            + "<td>"
+                            + "<form action=\"appCounselor\">"
+                            + "<input type=\"text\" name=\"license\" value=" + license + " hidden></input>"
+                            + "<input type=\"submit\" value=\"Approve\"></input>"
+                            + "</form>"
+                            + "<form action=\"rejCounselor\">"
+                            + "<input type=\"text\" name=\"license\" value=" + license + " hidden></input>"
+                            + "<input type=\"submit\" value=\"Reject\"></input>"
+                            + "</form>"
+                            + "</div>"
+                            + "</tr>");
+                } else if (status.equals("Approved")) {
+                    out.print("<td>"
+                            + "APPROVED"
+                            + "</tr>");
+                } else if (status.equals("Rejected")) {
+                    out.print("<td>"
+                            + "Rejected"
+                            + "</tr>");
+                }
+            }
+            out.print("\n"
+                    + "                    </table>\n"
+                    + "                </div>\n"
+                    + "                <div>\n"
+                    + "                    \n"
+                    + "                </div>\n"
+                    + "            <div>\n"
+                    + "        </div>\n"
+                    + "    </body>");
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -171,7 +170,4 @@ public class approve extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
-
 }
-
