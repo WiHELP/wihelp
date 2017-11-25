@@ -27,7 +27,7 @@
                 Connection conn = DriverManager.getConnection(
                         "jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
 
-                String sql = "SELECT eventName, eventDate from event";
+                String sql = "SELECT eventName, eventDate, eventLocation, description from event";
                 Statement stmt = null;
                 stmt = conn.createStatement();
                 rset = stmt.executeQuery(sql);
@@ -87,7 +87,9 @@
                                 <thead>
                                     <tr>
                                         <th>Event Name</th>
-                                        <th>Date</th>                                            
+                                        <th>Date</th> 
+                                        <th>Description</th> 
+                                        <th>Location</th>                                     
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,8 +98,10 @@
                                     %>
 
                                     <tr>
-                                        <td><a href="#"><%=rset.getString("eventName")%></a></td>      
+                                        <td><%=rset.getString("eventName")%></td>      
                                         <td><%=rset.getString("eventDate")%></td>
+                                        <td><%=rset.getString("description")%></td>
+                                        <td><a href="#"><%=rset.getString("eventLocation")%></a></td>
 
                                     </tr>
                                     <%
