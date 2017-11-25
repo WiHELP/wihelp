@@ -9,7 +9,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>WiHELP</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
     </head>
     <body>
@@ -18,6 +24,9 @@
             int stress = 0;
             int anxiety = 0;
             int depression = 0;
+            String result1="";
+            String result2="";
+            String result3=""; 
             int i = 1;
             int answer[] = new int[22];
             for (int a = 1; a < 22; a++) {
@@ -46,8 +55,105 @@
             }
 
           //  out.print(stress+"<br>"+anxiety+"<br>"+depression+"<br>");
-
+            if (stress < 8)
+            {
+                result1 = "Normal";
+            }
+            else if (stress < 10)
+            {
+                result1  = "Mild";
+            }
+            
+            else if (stress <14)
+            {
+                result1 = "Moderate";
+            }
+            
+            else if (stress < 18)
+            {
+                result1 = "Severe";
+            }
+            
+            else if (stress > 18)
+            {
+                result1 = "Extremely severe";
+            }
+            
+            if (anxiety < 5)
+            {
+                result2 = "Normal";
+            }
+            else if (anxiety < 7)
+            {
+                result2  = "Mild";
+            }
+            
+            else if (anxiety < 9)
+            {
+                result2 = "Moderate";
+            }
+            
+            else if (anxiety < 11)
+            {
+                result2 = "Severe";
+            }
+            
+            else if  (anxiety > 11)
+            {
+                result2 = "Extremely severe";
+            }
+            
+            if (depression < 6)
+            {
+                result3 = "Normal";
+            }
+            else if (depression < 8)
+            {
+                result3  = "Mild";
+            }
+            
+            else if (depression < 11)
+            {
+                result3 = "Moderate";
+            }
+            
+            else if (depression < 15)
+            {
+                result3 = "Severe";
+            }
+            
+            else if (depression > 15)
+            {
+                result3 = "Extremely severe";
+            }
+            
+            
+            //out.print("Stress Score: " + stress + " [" + result1 + "]<br>");
+            //out.print("Anxiety Score: " + anxiety + " [" + result2 + "]<br>");
+            //out.print("Depression Score: " + depression + " [" + result3 + "]<br>");
         %>
-
+        
+        <table border="1">
+            <tr>
+                <th> </th>
+                <th> Stress </th>
+                <th> Anxiety </th>
+                <th> Depression </th>
+            </tr>
+            <tr>
+                <td> Score </td>
+                <td> <%=stress%> </td>
+                <td> <%=anxiety%> </td>
+                <td> <%=depression%> </td>
+            </tr>
+            <tr>
+                <td> Level </td>
+                <td> <%=result1%> </td>
+                <td> <%=result2%> </td>
+                <td> <%=result3%> </td>
+            </tr>
+        </table>
+        
+        
     </body>
 </html>
