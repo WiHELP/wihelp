@@ -20,6 +20,10 @@
         <servlet-name>rejCounselor</servlet-name>
         <servlet-class>WiHELP.rejCounselor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>createForum</servlet-name>
+        <servlet-class>WiHELP.createForum</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>rejCounselor</servlet-name>
         <url-pattern>/rejCounselor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createForum</servlet-name>
+        <url-pattern>/createForum</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

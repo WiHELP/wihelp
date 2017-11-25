@@ -80,10 +80,10 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <form action="createForum">
-                        Forum title:<input type="text" name="forumtitle">
-                        Forum body:<input type="text" name="forumContent">
-                        <input type="text" name="">
+                    <form method="post" action="createForum">
+                        Forum title:<input type="text" name="forumTitle">
+                        Forum body:<textarea type="text" name="forumContent"></textarea>>
+                        
                         <input type="submit">
                     </form>
                 </div>
