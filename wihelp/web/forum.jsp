@@ -93,15 +93,20 @@
             <%
                 String forumid = "";
                 while(rset.next()){
-                    if(!forumid.equals(rset.getString("forumId"))){
+                    String title = rset.getString("forumTitle");
+                    String starter = rset.getString("startUser");
+                    String fId = rset.getString("forumId");
+                    if(!forumid.equals(fId)){
                         %>
-                            <tr>
-                                <td rowspan="2"><%=rset.getString("forumTitle")%>
+                            
+                        <tr>
+                                <td rowspan="2"><%out.print("<a href=forumThread.jsp?forumid="+fId+"&forumtitle="+title+">"+title+"</a>");%>
                                 <td>Start date: <%=rset.getString("startDate")%>
                             </tr>
                             <tr>
-                                <td>Start by: <%=rset.getString("startUser")%>
+                                <td>Start by: <%=starter%>
                             </tr>
+                            
                         <%
                     }
                 }
