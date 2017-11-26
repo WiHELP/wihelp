@@ -61,7 +61,7 @@
                         <a href="#" class="image"><img src="images/chat.png" alt="" /></a>
                         <div class="content">
                             <h2 class="major">One-to-One Conversation</h2>
-                            <p>nasi lemak</p>
+                            <p>A platform where you can communicate one-to-one with counselor</p>
                             <a href="#" class="special">Learn more</a>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <a href="#" class="image"><img src="images/forum.png" alt="" /></a>
                         <div class="content">
                             <h2 class="major">Forum</h2>
-                            <p>ayam goreng</p>
+                            <p>A medium where you can ask </p>
                             <a href="#" class="special">Learn more</a>
                         </div>
                     </div>
