@@ -122,14 +122,7 @@
 
         </section>
 
-        <!-- Footer -->
-        <section id="footer">
-            <div class="inner">
-                <ul class="copyright">
-
-                </ul>
-            </div>
-        </section>
+ 
 
     </div>
 
