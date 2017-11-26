@@ -19,6 +19,40 @@
 
     </head>
     <body>
+        <!-- Scripts -->
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
+        
+        <!-- Page Wrapper -->
+        <div id="page-wrapper">
+
+            <header id="header">
+                <h2><a href="homepage/homeview.jsp">WiHELP</a></h2>
+                <nav>
+                    <a href="#menu">Menu</a>
+                </nav>
+            </header>
+
+            <!-- Menu -->
+            <nav id="menu">
+                <div class="inner">
+                    <h2>Menu</h2>
+                    <ul class="links">
+                        <li><a href="homepage/homeview.jsp">Home</a></li>
+                        <li><a href="chat.jsp">Chat</a></li>
+                        <li><a href="forum.jsp">Forum</a></li>
+                        <li><a href="listevent.jsp">Event</a></li>
+                    </ul>
+                    <a href="#" class="close">Close</a>
+                </div>
+            </nav>
+            
+            
+        
         <%
 
             int stress = 0;
@@ -74,7 +108,7 @@
                 result1 = "Severe";
             }
             
-            else if (stress > 18)
+            else if (stress >= 18)
             {
                 result1 = "Extremely severe";
             }
@@ -98,7 +132,7 @@
                 result2 = "Severe";
             }
             
-            else if  (anxiety > 11)
+            else if  (anxiety >= 11)
             {
                 result2 = "Extremely severe";
             }
@@ -122,7 +156,7 @@
                 result3 = "Severe";
             }
             
-            else if (depression > 15)
+            else if (depression >= 15)
             {
                 result3 = "Extremely severe";
             }
@@ -133,27 +167,43 @@
             //out.print("Depression Score: " + depression + " [" + result3 + "]<br>");
         %>
         
-        <table border="1">
-            <tr>
-                <th> </th>
-                <th> Stress </th>
-                <th> Anxiety </th>
-                <th> Depression </th>
-            </tr>
-            <tr>
-                <td> Score </td>
-                <td> <%=stress%> </td>
-                <td> <%=anxiety%> </td>
-                <td> <%=depression%> </td>
-            </tr>
-            <tr>
-                <td> Level </td>
-                <td> <%=result1%> </td>
-                <td> <%=result2%> </td>
-                <td> <%=result3%> </td>
-            </tr>
-        </table>
-        
+        <div class="wrapper">
+            <div class="inner">
+                <section>
+                    <h2> RESULT OF DEPRESSION ANXIETY STRESS SOCRE TEST </h2>
+                    <div class="table-wrapper">
+                        <table class="alt">
+                            <thead>
+                            <tr>
+                                <th> </th>
+                                <th> Stress </th>
+                                <th> Anxiety </th>
+                                <th> Depression </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td> Score </td>
+                                <td> <%=stress%> </td>
+                                <td> <%=anxiety%> </td>
+                                <td> <%=depression%> </td>
+                            </tr>
+                            <tr>
+                                <td> Level </td>
+                                <td> <%=result1%> </td>
+                                <td> <%=result2%> </td>
+                                <td> <%=result3%> </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+      
+        </div>
+        </div>    
         
     </body>
 </html>
+
+        
