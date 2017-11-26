@@ -150,7 +150,14 @@
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <p>
-
+                        <h1>Reply to: <%=fTitle%></h1>
+                        <form action="forumReply">
+                            <%
+                                out.print("<input type=\"text\" name=\"forumId\" value="+fId+" hidden>");
+                            %>
+                            <textarea name="reply"></textarea>
+                            <input type="submit" value="reply">
+                        </form>
                     </p>
                 </div>
 

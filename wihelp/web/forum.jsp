@@ -73,7 +73,7 @@
     <body>
         <div>
             <h1>Forum</h1>
-            <button id="myBtn">New chat</button>
+            <button id="myBtn">New Thread</button>
 
             <div id="myModal" class="modal">
 
@@ -97,6 +97,7 @@
                     String starter = rset.getString("startUser");
                     String fId = rset.getString("forumId");
                     if(!forumid.equals(fId)){
+                        forumid = fId;
                         %>
                             
                         <tr>
