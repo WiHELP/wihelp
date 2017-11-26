@@ -73,16 +73,16 @@
     <body>
         <div>
             <h1>Forum</h1>
-            <button id="myBtn">New chat</button>
+            <button id="myBtn">New Thread</button>
 
             <div id="myModal" class="modal">
 
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <form action="createForum">
-                        Forum title:<input type="text" name="forumtitle">
-                        Forum body:<input type="textarea" name="forumContent">
+                    <form method="post" action="createForum">
+                        Forum title:<input type="text" name="forumTitle">
+                        Forum body:<textarea type="text" name="forumContent"></textarea>
                         
                         <input type="submit">
                     </form>
@@ -93,15 +93,21 @@
             <%
                 String forumid = "";
                 while(rset.next()){
-                    if(!forumid.equals(rset.getString("forumId"))){
+                    String title = rset.getString("forumTitle");
+                    String starter = rset.getString("startUser");
+                    String fId = rset.getString("forumId");
+                    if(!forumid.equals(fId)){
+                        forumid = fId;
                         %>
-                            <tr>
-                                <td rowspan="2"><%=rset.getString("forumTitle")%>
+                            
+                        <tr>
+                                <td rowspan="2"><%out.print("<a href=forumThread.jsp?forumid="+fId+"&forumtitle="+title+">"+title+"</a>");%>
                                 <td>Start date: <%=rset.getString("startDate")%>
                             </tr>
                             <tr>
-                                <td>Start by: <%=rset.getString("startUser")%>
+                                <td>Start by: <%=starter%>
                             </tr>
+                            
                         <%
                     }
                 }

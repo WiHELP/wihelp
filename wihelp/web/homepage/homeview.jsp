@@ -70,7 +70,7 @@
                                         </a>
                                     </span>
                                 </div>
-                                <div class="4u"><span class="image fit"><img src="images/forum.png" alt="" /></span></div>
+                                <div class="4u"><span class="image fit"><a href="../forum.jsp"><img src="images/forum.png" alt="" /></a></span></div>
                                 <div class="4u"><span class="image fit"><a href="../listevent.jsp"><img src="images/share.png" alt="" /></a></span></div>
 
                             </div>
