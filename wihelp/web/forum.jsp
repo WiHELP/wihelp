@@ -82,7 +82,7 @@
                     <span class="close">&times;</span>
                     <form method="post" action="createForum">
                         Forum title:<input type="text" name="forumTitle">
-                        Forum body:<textarea type="text" name="forumContent"></textarea>>
+                        Forum body:<textarea type="text" name="forumContent"></textarea>
                         
                         <input type="submit">
                     </form>
