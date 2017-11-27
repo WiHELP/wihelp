@@ -61,8 +61,8 @@
                         <a href="#" class="image"><img src="images/chat.png" alt="" /></a>
                         <div class="content">
                             <h2 class="major">One-to-One Conversation</h2>
-                            <p>nasi lemak</p>
-                            <a href="#" class="special">Learn more</a>
+                            <p>A platform where you can communicate one-to-one with counselor</p>
+                            
                         </div>
                     </div>
                 </section>
@@ -73,8 +73,8 @@
                         <a href="#" class="image"><img src="images/forum.png" alt="" /></a>
                         <div class="content">
                             <h2 class="major">Forum</h2>
-                            <p>ayam goreng</p>
-                            <a href="#" class="special">Learn more</a>
+                            <p>A medium where you can ask for opinions and help others to solve their problems </p>
+                            
                         </div>
                     </div>
                 </section>
@@ -85,8 +85,8 @@
                         <a href="#" class="image"><img src="images/share.png" alt="" /></a>
                         <div class="content">
                             <h2 class="major">Share Event</h2>
-                            <p>teh o ais</p>
-                            <a href="#" class="special">Learn more</a>
+                            <p>A channel where you can share any latest current events regarding mental health awareness</p>
+                            
                         </div>
                     </div>
                 </section>
