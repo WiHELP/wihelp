@@ -116,7 +116,7 @@
                 <a href="homepage/homeview.jsp"><h2>WiHELP</h2></a>
                 <nav>
                     <a href="#menu">Menu</a>
-                    
+
                 </nav>
             </header>
 
@@ -133,7 +133,7 @@
                     <a href="#" class="close">Close</a>
                 </div>
             </nav>
-            
+
             <!-- Banner -->
             <section id="banner">
                 <div class="inner">
@@ -149,7 +149,7 @@
                 <div class="inner">
 
                     <section>
-                        
+
                         <%
                             if (user3.equals("patient")) {
                         %>
@@ -363,4 +363,6 @@
                         }
                     }
                 </script>
-                </html>
+            </div>
+    </body>
+</html>
