@@ -28,9 +28,10 @@ and open the template in the editor.
         <div id="page-wrapper">
 
             <header id="header">
-                <h2><a href="homepage/homeview.jsp">WiHELP</a></h2>
+                <a href="homepage/homeview.jsp"><h2>WiHELP</h2></a>
                 <nav>
                     <a href="#menu">Menu</a>
+
                 </nav>
             </header>
 
@@ -47,230 +48,263 @@ and open the template in the editor.
                     <a href="#" class="close">Close</a>
                 </div>
             </nav>
-            
-        <div class="wrapper">
-            <div class="inner">          
-                <section>
-                    <h2 class="major"><b>DEPRESSION ANXIETY STRESS SCALES TEST</b></h2>
 
-                    <form method="post" action="testResult.jsp">
+            <!-- Banner -->
+            <section id="banner">
+                <div class="inner">
+                    <div class="logo"><span class=""></span></div>
+                    <center><h2>DEPRESSION ANXIETY STRESS SCALES TEST</h2></center>
+                    <center><p>The DASS is a clinical assessment that measures the three related states of depression,
+                            anxiety and stress.</p></center>
 
-                        <label  for="s1">I feel difficult to stay calm </label>
-                        <input type="radio" id="never1" name="r[1]" value="0">
-                        <label for="never1">Never</label>
-                        <input type="radio" id="rarely1"  name="r[1]" value="1">
-                        <label for="rarely1">Rarely</label>
-                        <input type="radio" id="often1" name="r[1]" value="2">
-                        <label for="often1">Often</label>
-                        <input type="radio" id="voften1" name="r[1]" value="3">
-                        <label for="voften1"> Very Often</label> 
 
-                        <label for="s2"> I realize I have dry lips  </label> 
-                        <input type="radio" id="never2" name="r[2]" value="0">
-                        <label for="never2">Never</label>
-                        <input type="radio" id="rarely2" name="r[2]" value="1">
-                        <label for="rarely2">Rarely</label>
-                        <input type="radio" id="often2"  name="r[2]" value="2">
-                        <label for="often2">Often</label>
-                        <input type="radio" id="voften2" name="r[2]" value="3">
-                        <label for="voften2"> Very Often</label> 
+                </div>
+            </section>
 
-                        <label for ="s3"> I feel like I do not have any positivity in life </label> 
-                        <input type="radio" id="never3" name="r[3]" value="0">
-                        <label for="never3">Never</label>
-                        <input type="radio" id="rarely3" name="r[3]" value="1">
-                        <label for="rarely3">Rarely</label>
-                        <input type="radio" id="often3"  name="r[3]" value="2">
-                        <label for="often3">Often</label>
-                        <input type="radio" id="voften3" name="r[3]" value="3">
-                        <label for="voften3"> Very Often</label> 
 
-                        <label for ="s3"> I experienced breathing difficulties such as excessively rapid breathing and gasping for breath even i am not doing any physical activities  </label> 
-                        <input type="radio" id="never4" name="r[4]" value="0">
-                        <label for="never4">Never</label>
-                        <input type="radio" id="rarely4" name="r[4]" value="1">
-                        <label for="rarely4">Rarely</label>
-                        <input type="radio" id="often4"  name="r[4]" value="2">
-                        <label for="often4">Often</label>
-                        <input type="radio" id="voften4" name="r[4]" value="3">
-                        <label for="voften4"> Very Often</label> 
+            <div class="wrapper">
+                <div class="inner">          
+                    <section>
+                        <h2 class="major"><b>Please answer all question. </b></h2>
 
-                        <label for ="s5"> I am not feeling excited to start doing something  </label> 
-                        <input type="radio" id="never5" name="r[5]" value="0">
-                        <label for="never5">Never</label>
-                        <input type="radio" id="rarely5" name="r[5]" value="1">
-                        <label for="rarely5">Rarely</label>
-                        <input type="radio" id="often5"  name="r[5]" value="2">
-                        <label for="often5">Often</label>
-                        <input type="radio" id="voften5" name="r[5]" value="3">
-                        <label for="voften5"> Very Often</label>  
+                        <form method="post" action="testResult.jsp">
 
-                        <label for ="s6"> I tend to over react in any situations </label>
-                        <input type="radio" id="never6" name="r[6]" value="0">
-                        <label for="never6">Never</label>
-                        <input type="radio" id="rarely6" name="r[6]" value="1">
-                        <label for="rarely6">Rarely</label>
-                        <input type="radio" id="often6"  name="r[6]" value="2">
-                        <label for="often6">Often</label>
-                        <input type="radio" id="voften6" name="r[6]" value="3">
-                        <label for="voften6"> Very Often</label> 
+                            <label  for="s1">I feel difficult to stay calm </label>
+                            <input type="radio" id="never1" name="r[1]" value="0">
+                            <label for="never1">Never</label>
+                            <input type="radio" id="rarely1"  name="r[1]" value="1">
+                            <label for="rarely1">Rarely</label>
+                            <input type="radio" id="often1" name="r[1]" value="2">
+                            <label for="often1">Often</label>
+                            <input type="radio" id="voften1" name="r[1]" value="3">
+                            <label for="voften1"> Very Often</label> 
+                            <br><br>
 
-                        <label for ="s7"> I experienced trembling (eg: hands)  </label> 
-                        <input type="radio" id="never7" name="r[7]" value="0">
-                        <label for="never7">Never</label>
-                        <input type="radio" id="rarely7" name="r[7]" value="1">
-                        <label for="rarely7">Rarely</label>
-                        <input type="radio" id="often7"  name="r[7]" value="2">
-                        <label for="often7">Often</label>
-                        <input type="radio" id="voften7" name="r[7]" value="3">
-                        <label for="voften7"> Very Often</label>
+                            <label for="s2"> I realize I have dry lips  </label> 
+                            <input type="radio" id="never2" name="r[2]" value="0">
+                            <label for="never2">Never</label>
+                            <input type="radio" id="rarely2" name="r[2]" value="1">
+                            <label for="rarely2">Rarely</label>
+                            <input type="radio" id="often2"  name="r[2]" value="2">
+                            <label for="often2">Often</label>
+                            <input type="radio" id="voften2" name="r[2]" value="3">
+                            <label for="voften2"> Very Often</label> 
+                            <br><br>
 
-                        <label for ="s8"> I feel like i am being too anxious  </label> 
-                        <input type="radio" id="never8" name="r[8]" value="0">
-                        <label for="never8">Never</label>
-                        <input type="radio" id="rarely8" name="r[8]" value="1">
-                        <label for="rarely8">Rarely</label>
-                        <input type="radio" id="often8"  name="r[8]" value="2">
-                        <label for="often8">Often</label>
-                        <input type="radio" id="voften8" name="r[8]" value="3">
-                        <label for="voften8"> Very Often</label>
+                            <label for ="s3"> I feel like I do not have any positivity in life </label> 
+                            <input type="radio" id="never3" name="r[3]" value="0">
+                            <label for="never3">Never</label>
+                            <input type="radio" id="rarely3" name="r[3]" value="1">
+                            <label for="rarely3">Rarely</label>
+                            <input type="radio" id="often3"  name="r[3]" value="2">
+                            <label for="often3">Often</label>
+                            <input type="radio" id="voften3" name="r[3]" value="3">
+                            <label for="voften3"> Very Often</label> 
+                            <br><br>
 
-                        <label for ="s9"> I am worried about situation which I may panic and make a fool of myself  </label> 
-                        <input type="radio" id="never9" name="r[9]" value="0">
-                        <label for="never9">Never</label>
-                        <input type="radio" id="rarely9" name="r[9]" value="1">
-                        <label for="rarely9">Rarely</label>
-                        <input type="radio" id="often9"  name="r[9]" value="2">
-                        <label for="often9">Often</label>
-                        <input type="radio" id="voften9" name="r[9]" value="3">
-                        <label for="voften9"> Very Often</label> 
+                            <label for ="s3"> I experienced breathing difficulties such as excessively rapid breathing and gasping for breath even i am not doing any physical activities  </label> 
+                            <input type="radio" id="never4" name="r[4]" value="0">
+                            <label for="never4">Never</label>
+                            <input type="radio" id="rarely4" name="r[4]" value="1">
+                            <label for="rarely4">Rarely</label>
+                            <input type="radio" id="often4"  name="r[4]" value="2">
+                            <label for="often4">Often</label>
+                            <input type="radio" id="voften4" name="r[4]" value="3">
+                            <label for="voften4"> Very Often</label> 
+                            <br><br>
 
-                        <label for ="s10"> I feel that I have nothing to look forward to  </label> 
-                        <input type="radio" id="never10" name="r[10]" value="0">
-                        <label for="never10">Never</label>
-                        <input type="radio" id="rarely10" name="r[10]" value="1">
-                        <label for="rarely10">Rarely</label>
-                        <input type="radio" id="often10"  name="r[10]" value="2">
-                        <label for="often10">Often</label>
-                        <input type="radio" id="voften10" name="r[10]" value="3">
-                        <label for="voften10"> Very Often</label>
+                            <label for ="s5"> I am not feeling excited to start doing something  </label> 
+                            <input type="radio" id="never5" name="r[5]" value="0">
+                            <label for="never5">Never</label>
+                            <input type="radio" id="rarely5" name="r[5]" value="1">
+                            <label for="rarely5">Rarely</label>
+                            <input type="radio" id="often5"  name="r[5]" value="2">
+                            <label for="often5">Often</label>
+                            <input type="radio" id="voften5" name="r[5]" value="3">
+                            <label for="voften5"> Very Often</label>  
+                            <br><br>
 
-                        <label for ="s11"> I found myself feeling too nervous  </label> 
-                        <input type="radio" id="never11" name="r[11]" value="0">
-                        <label for="never11">Never</label>
-                        <input type="radio" id="rarely11" name="r[11]" value="1">
-                        <label for="rarely11">Rarely</label>
-                        <input type="radio" id="often11"  name="r[11]" value="2">
-                        <label for="often11">Often</label>
-                        <input type="radio" id="voften11" name="r[11]" value="3">
-                        <label for="voften11"> Very Often</label> 
+                            <label for ="s6"> I tend to over react in any situations </label>
+                            <input type="radio" id="never6" name="r[6]" value="0">
+                            <label for="never6">Never</label>
+                            <input type="radio" id="rarely6" name="r[6]" value="1">
+                            <label for="rarely6">Rarely</label>
+                            <input type="radio" id="often6"  name="r[6]" value="2">
+                            <label for="often6">Often</label>
+                            <input type="radio" id="voften6" name="r[6]" value="3">
+                            <label for="voften6"> Very Often</label> 
+                            <br><br>
 
-                        <label for ="s12"> I find it difficult to relax  </label> 
-                        <input type="radio" id="never12" name="r[12]" value="0">
-                        <label for="never12">Never</label>
-                        <input type="radio" id="rarely12" name="r[12]" value="1">
-                        <label for="rarely12">Rarely</label>
-                        <input type="radio" id="often12"  name="r[12]" value="2">
-                        <label for="often12">Often</label>
-                        <input type="radio" id="voften12" name="r[12]" value="3">
-                        <label for="voften12"> Very Often</label>
+                            <label for ="s7"> I experienced trembling (eg: hands)  </label> 
+                            <input type="radio" id="never7" name="r[7]" value="0">
+                            <label for="never7">Never</label>
+                            <input type="radio" id="rarely7" name="r[7]" value="1">
+                            <label for="rarely7">Rarely</label>
+                            <input type="radio" id="often7"  name="r[7]" value="2">
+                            <label for="often7">Often</label>
+                            <input type="radio" id="voften7" name="r[7]" value="3">
+                            <label for="voften7"> Very Often</label>
+                            <br><br>
 
-                        <label for ="s13"> I am feeling gloomy and sad  </label> 
-                        <input type="radio" id="never13" name="r[13]" value="0">
-                        <label for="never13">Never</label>
-                        <input type="radio" id="rarely13" name="r[13]" value="1">
-                        <label for="rarely13">Rarely</label>
-                        <input type="radio" id="often13"  name="r[13]" value="2">
-                        <label for="often13">Often</label>
-                        <input type="radio" id="voften13" name="r[13]" value="3">
-                        <label for="voften13"> Very Often</label>
+                            <label for ="s8"> I feel like i am being too anxious  </label> 
+                            <input type="radio" id="never8" name="r[8]" value="0">
+                            <label for="never8">Never</label>
+                            <input type="radio" id="rarely8" name="r[8]" value="1">
+                            <label for="rarely8">Rarely</label>
+                            <input type="radio" id="often8"  name="r[8]" value="2">
+                            <label for="often8">Often</label>
+                            <input type="radio" id="voften8" name="r[8]" value="3">
+                            <label for="voften8"> Very Often</label>
+                            <br><br>
 
-                        <label for ="s14"> I cannot tolerate with anything that stop me from continuing what i was doing   </label> 
-                        <input type="radio" id="never14" name="r[14]" value="0">
-                        <label for="never14">Never</label>
-                        <input type="radio" id="rarely14" name="r[14]" value="1">
-                        <label for="rarely14">Rarely</label>
-                        <input type="radio" id="often14"  name="r[14]" value="2">
-                        <label for="often14">Often</label>
-                        <input type="radio" id="voften14" name="r[14]" value="3">
-                        <label for="voften14"> Very Often</label>
+                            <label for ="s9"> I am worried about situation which I may panic and make a fool of myself  </label> 
+                            <input type="radio" id="never9" name="r[9]" value="0">
+                            <label for="never9">Never</label>
+                            <input type="radio" id="rarely9" name="r[9]" value="1">
+                            <label for="rarely9">Rarely</label>
+                            <input type="radio" id="often9"  name="r[9]" value="2">
+                            <label for="often9">Often</label>
+                            <input type="radio" id="voften9" name="r[9]" value="3">
+                            <label for="voften9"> Very Often</label> 
+                            <br><br>
 
-                        <label for ="s15"> I feel that I almost panic  </label> 
-                        <input type="radio" id="never15" name="r[15]" value="0">
-                        <label for="never15">Never</label>
-                        <input type="radio" id="rarely15" name="r[15]" value="1">
-                        <label for="rarely15">Rarely</label>
-                        <input type="radio" id="often15"  name="r[15]" value="2">
-                        <label for="often15">Often</label>
-                        <input type="radio" id="voften15" name="r[15]" value="3">
-                        <label for="voften15"> Very Often</label> 
+                            <label for ="s10"> I feel that I have nothing to look forward to  </label> 
+                            <input type="radio" id="never10" name="r[10]" value="0">
+                            <label for="never10">Never</label>
+                            <input type="radio" id="rarely10" name="r[10]" value="1">
+                            <label for="rarely10">Rarely</label>
+                            <input type="radio" id="often10"  name="r[10]" value="2">
+                            <label for="often10">Often</label>
+                            <input type="radio" id="voften10" name="r[10]" value="3">
+                            <label for="voften10"> Very Often</label>
+                            <br><br>
 
-                        <label for ="s16"> I am not motivated at all  </label> 
-                        <input type="radio" id="never16" name="r[16]" value="0">
-                        <label for="never16">Never</label>
-                        <input type="radio" id="rarely16" name="r[16]" value="1">
-                        <label for="rarely16">Rarely</label>
-                        <input type="radio" id="often16"  name="r[16]" value="2">
-                        <label for="often16">Often</label>
-                        <input type="radio" id="voften16" name="r[16]" value="3">
-                        <label for="voften16"> Very Often</label> 
+                            <label for ="s11"> I found myself feeling too nervous  </label> 
+                            <input type="radio" id="never11" name="r[11]" value="0">
+                            <label for="never11">Never</label>
+                            <input type="radio" id="rarely11" name="r[11]" value="1">
+                            <label for="rarely11">Rarely</label>
+                            <input type="radio" id="often11"  name="r[11]" value="2">
+                            <label for="often11">Often</label>
+                            <input type="radio" id="voften11" name="r[11]" value="3">
+                            <label for="voften11"> Very Often</label> 
+                            <br><br>
 
-                        <label for ="s17"> I think I am not worthy as a person  </label> 
-                        <input type="radio" id="never17" name="r[17]" value="0">
-                        <label for="never17">Never</label>
-                        <input type="radio" id="rarely17" name="r[17]" value="1">
-                        <label for="rarely17">Rarely</label>
-                        <input type="radio" id="often17"  name="r[17]" value="2">
-                        <label for="often17">Often</label>
-                        <input type="radio" id="voften17" name="r[17]" value="3">
-                        <label for="voften17"> Very Often</label> 
+                            <label for ="s12"> I find it difficult to relax  </label> 
+                            <input type="radio" id="never12" name="r[12]" value="0">
+                            <label for="never12">Never</label>
+                            <input type="radio" id="rarely12" name="r[12]" value="1">
+                            <label for="rarely12">Rarely</label>
+                            <input type="radio" id="often12"  name="r[12]" value="2">
+                            <label for="often12">Often</label>
+                            <input type="radio" id="voften12" name="r[12]" value="3">
+                            <label for="voften12"> Very Often</label>
+                            <br><br>
 
-                        <label for ="s18"> I am easily offended  </label>
-                        <input type="radio" id="never18" name="r[18]" value="0">
-                        <label for="never18">Never</label>
-                        <input type="radio" id="rarely18" name="r[18]" value="1">
-                        <label for="rarely18">Rarely</label>
-                        <input type="radio" id="often18"  name="r[18]" value="2">
-                        <label for="often18">Often</label>
-                        <input type="radio" id="voften18" name="r[18]" value="3">
-                        <label for="voften18"> Very Often</label>
+                            <label for ="s13"> I am feeling gloomy and sad  </label> 
+                            <input type="radio" id="never13" name="r[13]" value="0">
+                            <label for="never13">Never</label>
+                            <input type="radio" id="rarely13" name="r[13]" value="1">
+                            <label for="rarely13">Rarely</label>
+                            <input type="radio" id="often13"  name="r[13]" value="2">
+                            <label for="often13">Often</label>
+                            <input type="radio" id="voften13" name="r[13]" value="3">
+                            <label for="voften13"> Very Often</label>
+                            <br><br>
 
-                        <label for ="s19"> Although I am not doing any physical activities, I can feel my heart beating fast  </label> 
-                        <input type="radio" id="never19" name="r[19]" value="0">
-                        <label for="never19">Never</label>
-                        <input type="radio" id="rarely19" name="r[19]" value="1">
-                        <label for="rarely19">Rarely</label>
-                        <input type="radio" id="often19"  name="r[19]" value="2">
-                        <label for="often19">Often</label>
-                        <input type="radio" id="voften19" name="r[19]" value="3">
-                        <label for="voften19"> Very Often</label>
+                            <label for ="s14"> I cannot tolerate with anything that stop me from continuing what i was doing   </label> 
+                            <input type="radio" id="never14" name="r[14]" value="0">
+                            <label for="never14">Never</label>
+                            <input type="radio" id="rarely14" name="r[14]" value="1">
+                            <label for="rarely14">Rarely</label>
+                            <input type="radio" id="often14"  name="r[14]" value="2">
+                            <label for="often14">Often</label>
+                            <input type="radio" id="voften14" name="r[14]" value="3">
+                            <label for="voften14"> Very Often</label>
+                            <br><br>
 
-                        <label for ="s20"> I am feeling afraid over nothing  </label> 
-                        <input type="radio" id="never20" name="r[20]" value="0">
-                        <label for="never20">Never</label>
-                        <input type="radio" id="rarely20" name="r[20]" value="1">
-                        <label for="rarely20">Rarely</label>
-                        <input type="radio" id="often20"  name="r[20]" value="2">
-                        <label for="often20">Often</label>
-                        <input type="radio" id="voften20" name="r[20]" value="3">
-                        <label for="voften20"> Very Often</label>
+                            <label for ="s15"> I feel that I almost panic  </label> 
+                            <input type="radio" id="never15" name="r[15]" value="0">
+                            <label for="never15">Never</label>
+                            <input type="radio" id="rarely15" name="r[15]" value="1">
+                            <label for="rarely15">Rarely</label>
+                            <input type="radio" id="often15"  name="r[15]" value="2">
+                            <label for="often15">Often</label>
+                            <input type="radio" id="voften15" name="r[15]" value="3">
+                            <label for="voften15"> Very Often</label> 
+                            <br><br>
 
-                        <label for ="s21"> I feel like my life is not worthy anymore  </label>
-                        <input type="radio" id="never21" name="r[21]" value="0">
-                        <label for="never21">Never</label>
-                        <input type="radio" id="rarely21" name="r[21]" value="1">
-                        <label for="rarely21">Rarely</label>
-                        <input type="radio" id="often21"  name="r[21]" value="2">
-                        <label for="often21">Often</label>
-                        <input type="radio" id="voften21" name="r[21]" value="3">
-                        <label for="voften21"> Very Often</label>> 
+                            <label for ="s16"> I am not motivated at all  </label> 
+                            <input type="radio" id="never16" name="r[16]" value="0">
+                            <label for="never16">Never</label>
+                            <input type="radio" id="rarely16" name="r[16]" value="1">
+                            <label for="rarely16">Rarely</label>
+                            <input type="radio" id="often16"  name="r[16]" value="2">
+                            <label for="often16">Often</label>
+                            <input type="radio" id="voften16" name="r[16]" value="3">
+                            <label for="voften16"> Very Often</label> 
+                            <br><br>
 
-                        <br>                      
-                        <input type="submit">
-                    </form>
-                </section>    
+                            <label for ="s17"> I think I am not worthy as a person  </label> 
+                            <input type="radio" id="never17" name="r[17]" value="0">
+                            <label for="never17">Never</label>
+                            <input type="radio" id="rarely17" name="r[17]" value="1">
+                            <label for="rarely17">Rarely</label>
+                            <input type="radio" id="often17"  name="r[17]" value="2">
+                            <label for="often17">Often</label>
+                            <input type="radio" id="voften17" name="r[17]" value="3">
+                            <label for="voften17"> Very Often</label> 
+                            <br><br>
+
+                            <label for ="s18"> I am easily offended  </label>
+                            <input type="radio" id="never18" name="r[18]" value="0">
+                            <label for="never18">Never</label>
+                            <input type="radio" id="rarely18" name="r[18]" value="1">
+                            <label for="rarely18">Rarely</label>
+                            <input type="radio" id="often18"  name="r[18]" value="2">
+                            <label for="often18">Often</label>
+                            <input type="radio" id="voften18" name="r[18]" value="3">
+                            <label for="voften18"> Very Often</label>
+                            <br><br>
+
+                            <label for ="s19"> Although I am not doing any physical activities, I can feel my heart beating fast  </label> 
+                            <input type="radio" id="never19" name="r[19]" value="0">
+                            <label for="never19">Never</label>
+                            <input type="radio" id="rarely19" name="r[19]" value="1">
+                            <label for="rarely19">Rarely</label>
+                            <input type="radio" id="often19"  name="r[19]" value="2">
+                            <label for="often19">Often</label>
+                            <input type="radio" id="voften19" name="r[19]" value="3">
+                            <label for="voften19"> Very Often</label>
+                            <br><br>
+
+                            <label for ="s20"> I am feeling afraid over nothing  </label> 
+                            <input type="radio" id="never20" name="r[20]" value="0">
+                            <label for="never20">Never</label>
+                            <input type="radio" id="rarely20" name="r[20]" value="1">
+                            <label for="rarely20">Rarely</label>
+                            <input type="radio" id="often20"  name="r[20]" value="2">
+                            <label for="often20">Often</label>
+                            <input type="radio" id="voften20" name="r[20]" value="3">
+                            <label for="voften20"> Very Often</label>
+                            <br><br>
+
+                            <label for ="s21"> I feel like my life is not worthy anymore  </label>
+                            <input type="radio" id="never21" name="r[21]" value="0">
+                            <label for="never21">Never</label>
+                            <input type="radio" id="rarely21" name="r[21]" value="1">
+                            <label for="rarely21">Rarely</label>
+                            <input type="radio" id="often21"  name="r[21]" value="2">
+                            <label for="often21">Often</label>
+                            <input type="radio" id="voften21" name="r[21]" value="3">
+                            <label for="voften21"> Very Often</label> 
+                            <br><br>
+
+                            <input type="submit">
+                        </form>
+                    </section>    
+                </div>
             </div>
-        </div>
         </div>
     </body> 
 
