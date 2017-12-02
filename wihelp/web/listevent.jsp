@@ -80,7 +80,7 @@
 
                     <section>
                         <h2>SHARE EVENT</h2>
-                        <p>You can share your event here by fill in the form</p>
+                        <p>You can share your event here by fill in the form. You can click the location </p>
                         <h3>LIST OF EVENT</h3>
                         <div class="table-wrapper">
                             <table class="alt">
