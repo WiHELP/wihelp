@@ -65,11 +65,12 @@ public class register extends HttpServlet {
                 
                 stmt.executeUpdate();
                 
-                String sql2 = "INSERT into patient values(?,?)";
+                String sql2 = "INSERT into patient values(?,?,?)";
                 stmt2 = conn.prepareStatement(sql2);
                 
                 stmt2.setString(1, username);
                 stmt2.setString(2, address);
+                stmt2.setString(3, "anonymous");
                
                 stmt2.executeUpdate();
                 

@@ -53,9 +53,10 @@
         <div id="page-wrapper">
 
             <header id="header">
-                <h2><a href="homepage/homeview.jsp">WiHELP</a></h2>
+                <a href="homepage/homeview.jsp"><h2>WiHELP</h2></a>
                 <nav>
                     <a href="#menu">Menu</a>
+
                 </nav>
             </header>
 
@@ -73,15 +74,23 @@
                 </div>
             </nav>
 
+            <!-- Banner -->
+            <section id="banner">
+                <div class="inner">
+                    <div class="logo"><span class=""></span></div>
+                    <center><h2>SHARE EVENT</h2></center>
+                    <center><p>You can share your event here by fill in the form</p></center>
+                </div>
+            </section>
+
+
 
             <!-- Content -->
             <div class="wrapper">
                 <div class="inner">
 
                     <section>
-                        <h2>SHARE EVENT</h2>
-                        <p>You can share your event here by fill in the form</p>
-                        <h3>LIST OF EVENT</h3>
+                        <h2 class="major"><b>List Of Event </b></h2>
                         <div class="table-wrapper">
                             <table class="alt">
                                 <thead>
@@ -126,7 +135,7 @@
 
         </section>
 
- 
+
 
     </div>
 
