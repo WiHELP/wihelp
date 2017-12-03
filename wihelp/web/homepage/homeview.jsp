@@ -27,9 +27,9 @@
             String user = (String) session.getAttribute("userSession");
             String user2 = (String) session.getAttribute("userSessionName");
             String user3 = (String) session.getAttribute("userType");
-            String setting = null;
+            String setting = "test";
             
-            if(user2.equals("patient")){
+            if(user3.equals("patient")){
             ResultSet rset = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -38,13 +38,14 @@
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
-                String sql = "Select setting from patient where username='"+user+"'";
+                String sql = "Select setting from patient where username='"+user+"'";                
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);                
-                while (rset.next()) {
+                while(rset.next()) {
                     setting = rset.getString("setting");
                 }
+                
             } catch (Exception ex) {
                 out.println("Unable to connect to database.");
             }
@@ -104,8 +105,15 @@
             <div class="wrapper">
 
                 <div class="inner"> 
-                    <h1 class="major"><center>WELCOME, USERNAME</center></h1>
-                    <center><%= setting %></center>
+                    <h1 class="major"><center>WELCOME, <%= user%></center></h1>
+                    <%
+                        if(user3.equals("patient")){
+                            out.print("<center>Interaction Status: "+setting+"<a href=\"../changeSetting\" class=\"button small\" style=\"margin-left:5px\" id=\"changeBtn\">Change</a></center>");
+                        }
+                        else if(user3.equals("counselor")){
+                            out.print("<center>Counselor<center>");
+                    }
+                    %>
                     <section>
                         <div class="box alt" style="margin-top: 10%;">
                             <div class="row uniform">
@@ -142,4 +150,6 @@
             </div>
         </div>
     </body>
+    
+    
 </html>

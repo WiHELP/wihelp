@@ -65,8 +65,11 @@
             String user2 = (String) session.getAttribute("userSessionName");
             String user3 = (String) session.getAttribute("userType");
 
+            String setting = "";
+
             ResultSet rset = null;
             ResultSet rset2 = null;
+            ResultSet rsetset = null;
             int isOnly = 0;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -80,8 +83,16 @@
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
 
+                String userset = null;
                 while (rset.next()) {
                     isOnly++;
+                    String receiver = rset.getString("receiver");
+                    String sender = rset.getString("sender");
+                    if (receiver.equals(user)) {
+                        userset = sender;
+                    } else if (sender.equals(user)) {
+                        userset = receiver;
+                    }
                 }
                 rset = stmnt.executeQuery(sql);
 
@@ -89,6 +100,18 @@
                 String sql2 = "Select name,user.username from user join counselor on user.username = counselor.username";
                 stmnt2 = conn.createStatement();
                 rset2 = stmnt2.executeQuery(sql2);
+
+                if (user3.equals("counselor")) {
+                    String sqlsetting = "Select setting from patient where username='" + userset + "'";
+                    Statement stmntset = null;
+                    stmntset = conn.createStatement();
+                    rsetset = stmntset.executeQuery(sqlsetting);
+
+                    while (rsetset.next()) {
+                        setting = rsetset.getString("setting");
+                    }
+                }
+           //     out.print(setting);
 
             } catch (Exception ex) {
                 out.println("Unable to connect to database.");
@@ -121,191 +144,198 @@
             </nav>
         </section>
 
-            <div class="wrapper">
-                <div class="inner">
-                    <%
-                        if (user3.equals("patient")) {
-                    %>
-                    <button id="myBtn">New chat</button>
+        <div class="wrapper">
+            <div class="inner">
+                <%
+                    if (user3.equals("patient")) {
+                %>
+                <button id="myBtn">New chat</button>
 
-                    <div id="myModal" class="modal">
+                <div id="myModal" class="modal">
 
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <p>
-                                <%
-                                    while (rset2.next()) {
-                                        String to = rset2.getString("username");
-                                        String to2 = rset2.getString("name");
-                                        out.print("<a href='newChat.jsp?sendto=" + to + "&sendto2=" + to2 + "' class=\"button \">" + to2 + "</a>");
-                                    }
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>
+                            <%
+                                while (rset2.next()) {
+                                    String to = rset2.getString("username");
+                                    String to2 = rset2.getString("name");
+                                    out.print("<a href='newChat.jsp?sendto=" + to + "&sendto2=" + to2 + "' class=\"button \">" + to2 + "</a>");
+                                }
 
-                                %>
-                            </p>
-                        </div>
-
+                            %>
+                        </p>
                     </div>
-                    <%                        }
-                    %>
-                    <table border="1">
-                        <%
-                            String id = "";
-                            String prevReceiver = "";
-                            String name = "";
-                            String prevSender = "";
-                            String previd = "";
-                            Timestamp prevDate = null;
-                            String prevChat = "";
-                            int count = 0;
-                            //out.print(isOnly + "<br>");
 
-                            while (rset.next()) {
-                                String temp = rset.getString("chatId");
-                                String receiver = rset.getString("receiver");
-                                String sender = rset.getString("sender");
-                                Timestamp date = rset.getTimestamp("conversationDate");
-                                String chat = rset.getString("conversationContent");
-
-                                //    out.print(count + " " + prevTemp + " " + temp + "<br>");
-                                if (!previd.equals(temp)) {
-                                    count++;
-                                    if (count == 1) {
-
-                                        id = temp;
-                                        prevSender = sender;
-                                        prevReceiver = receiver;
-                                        previd = temp;
-                                        prevDate = date;
-                                        prevChat = chat;
-                                        continue;
-                                    }
-
-
-                        %>
-                        <tr>
-                            <td rowspan="2"><image src="" alt="Gambar orang">
-                            <td><%                        if (prevReceiver.equals(user)) {
-                                    out.print(prevSender);
-                                } else if (prevSender.equals(user)) {
-                                    out.print(prevReceiver);
-                                }
-                                %>
-                            <td><%=prevDate%>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><%
-                                if (prevReceiver.equals(user)) {
-                                    try {
-                                        Class.forName("com.mysql.jdbc.Driver");
-                                        Connection conn = null;
-                                        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
-
-                                        Statement stmnt2 = null;
-                                        String sql2 = "Select name from user where username = '" + prevSender + "'";
-                                        stmnt2 = conn.createStatement();
-                                        rset2 = stmnt2.executeQuery(sql2);
-
-                                    } catch (Exception ex) {
-                                        out.println("Unable to connect to database.");
-                                    }
-                                    while (rset2.next()) {
-                                        name = rset2.getString("name");
-                                    }
-                                    out.print("<a href=newChat.jsp?sendto=" + prevSender + "&sendto2=" + name + ">" + prevChat + "</a>");
-                                } else if (prevSender.equals(user)) {
-                                    try {
-                                        Class.forName("com.mysql.jdbc.Driver");
-                                        Connection conn = null;
-                                        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
-
-                                        Statement stmnt2 = null;
-                                        String sql2 = "Select name from user where username = '" + prevReceiver + "'";
-                                        stmnt2 = conn.createStatement();
-                                        rset2 = stmnt2.executeQuery(sql2);
-
-                                    } catch (Exception ex) {
-                                        out.println("Unable to connect to database.");
-                                    }
-                                    while (rset2.next()) {
-                                        name = rset2.getString("name");
-                                    }
-                                    out.print("<a href=newChat.jsp?sendto=" + prevReceiver + "&sendto2=" + name + ">" + prevChat + "</a>");
-                                }
-                                %>
-
-                        </tr>
-
-                        <%
-                            id = temp;
-
-                        } else if (rset.isLast()) {
-                        %>
-                        <tr>
-                            <td rowspan="2"><image src="" alt="Gambar orang">
-                            <td><%
-                                if (receiver.equals(user)) {
-                                    out.print(sender);
-                                } else if (sender.equals(user)) {
-                                    out.print(receiver);
-                                }
-                                %>
-                            <td><%=date%>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><%
-                                if (receiver.equals(user)) {
-                                    try {
-                                        Class.forName("com.mysql.jdbc.Driver");
-                                        Connection conn = null;
-                                        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
-
-                                        Statement stmnt2 = null;
-                                        String sql2 = "Select name from user where username = '" + sender + "'";
-                                        stmnt2 = conn.createStatement();
-                                        rset2 = stmnt2.executeQuery(sql2);
-
-                                    } catch (Exception ex) {
-                                        out.println("Unable to connect to database.");
-                                    }
-                                    while (rset2.next()) {
-                                        name = rset2.getString("name");
-                                    }
-                                    out.print("<a href=newChat.jsp?sendto=" + sender + "&sendto2=" + name + ">" + chat + "</a>");
-                                } else if (sender.equals(user)) {
-                                    try {
-                                        Class.forName("com.mysql.jdbc.Driver");
-                                        Connection conn = null;
-                                        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
-
-                                        Statement stmnt2 = null;
-                                        String sql2 = "Select name from user where username = '" + receiver + "'";
-                                        stmnt2 = conn.createStatement();
-                                        rset2 = stmnt2.executeQuery(sql2);
-
-                                    } catch (Exception ex) {
-                                        out.println("Unable to connect to database.");
-                                    }
-                                    while (rset2.next()) {
-                                        name = rset2.getString("name");
-                                    }
-                                    out.print("<a href=newChat.jsp?sendto=" + receiver + "&sendto2=" + name + ">" + chat + "</a>");
-                                }
-                                %>
-                        </tr>
-                        <%
-                                }
-
-                                prevSender = sender;
-                                prevReceiver = receiver;
-                                previd = temp;
-                                prevDate = date;
-                                prevChat = chat;
-                            }
-                        %>
-                    </table>
                 </div>
+                <%                        }
+                %>
+                <table border="1">
+                    <%
+                        String id = "";
+                        String prevReceiver = "";
+                        String name = "";
+                        String prevSender = "";
+                        String previd = "";
+                        Timestamp prevDate = null;
+                        String prevChat = "";
+                        int count = 0;
+                        //out.print(isOnly + "<br>");
+
+                        while (rset.next()) {
+                            String temp = rset.getString("chatId");
+                            String receiver = rset.getString("receiver");
+                            String sender = rset.getString("sender");
+                            Timestamp date = rset.getTimestamp("conversationDate");
+                            String chat = rset.getString("conversationContent");
+
+                            //    out.print(count + " " + prevTemp + " " + temp + "<br>");
+                            if (!previd.equals(temp)) {
+                                count++;
+                                if (count == 1) {
+
+                                    id = temp;
+                                    prevSender = sender;
+                                    prevReceiver = receiver;
+                                    previd = temp;
+                                    prevDate = date;
+                                    prevChat = chat;
+                                    continue;
+                                }
+
+
+                    %>
+                    <tr>
+                        <td rowspan="2" style="width:150px;height:150px"><img style="height:auto;width:auto;max-height:150px;max-width:150px;"src="images/user.jpg">
+                        <td><%
+                            if (setting.equals("anonymous")) {
+                                    out.print("anonymous");
+                                }
+                            else if (prevReceiver.equals(user)) {
+                                out.print(prevSender);
+                            } else if (prevSender.equals(user)) {
+                                out.print(prevReceiver);
+                            }
+                            %>
+                        <td><%=prevDate%>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><%
+                            if (prevReceiver.equals(user)) {
+                                try {
+                                    Class.forName("com.mysql.jdbc.Driver");
+                                    Connection conn = null;
+                                    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
+
+                                    Statement stmnt2 = null;
+                                    String sql2 = "Select name from user where username = '" + prevSender + "'";
+                                    stmnt2 = conn.createStatement();
+                                    rset2 = stmnt2.executeQuery(sql2);
+
+                                } catch (Exception ex) {
+                                    out.println("Unable to connect to database.");
+                                }
+                                while (rset2.next()) {
+                                    name = rset2.getString("name");
+                                }
+                                out.print("<a href=newChat.jsp?sendto=" + prevSender + "&sendto2=" + name + ">" + prevChat + "</a>");
+                            } else if (prevSender.equals(user)) {
+                                try {
+                                    Class.forName("com.mysql.jdbc.Driver");
+                                    Connection conn = null;
+                                    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
+
+                                    Statement stmnt2 = null;
+                                    String sql2 = "Select name from user where username = '" + prevReceiver + "'";
+                                    stmnt2 = conn.createStatement();
+                                    rset2 = stmnt2.executeQuery(sql2);
+
+                                } catch (Exception ex) {
+                                    out.println("Unable to connect to database.");
+                                }
+                                while (rset2.next()) {
+                                    name = rset2.getString("name");
+                                }
+                                out.print("<a href=newChat.jsp?sendto=" + prevReceiver + "&sendto2=" + name + ">" + prevChat + "</a>");
+                            }
+                            %>
+
+                    </tr>
+
+                    <%
+                        id = temp;
+
+                    } else if (rset.isLast()) {
+                    %>
+                    <tr>
+                        <td rowspan="2" style="width:150px;height:150px" ><img style="height:auto;width:auto;max-height:150px;max-width:150px;"src="images/user.jpg">
+                        <td><%
+                            if(setting.equals("anonymous")){
+                                out.print("anonymous");
+                            }
+                            else if (receiver.equals(user)) {
+                                out.print(sender);
+                            } else if (sender.equals(user)) {
+                                out.print(receiver);
+                            }
+                            %>
+                        <td><%=date%>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><%
+                            if (receiver.equals(user)) {
+                                try {
+                                    Class.forName("com.mysql.jdbc.Driver");
+                                    Connection conn = null;
+                                    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
+
+                                    Statement stmnt2 = null;
+                                    String sql2 = "Select name from user where username = '" + sender + "'";
+                                    stmnt2 = conn.createStatement();
+                                    rset2 = stmnt2.executeQuery(sql2);
+
+                                } catch (Exception ex) {
+                                    out.println("Unable to connect to database.");
+                                }
+                                while (rset2.next()) {
+                                    name = rset2.getString("name");
+                                }
+                                out.print("<a href=newChat.jsp?sendto=" + sender + "&sendto2=" + name + ">" + chat + "</a>");
+                            } else if (sender.equals(user)) {
+                                try {
+                                    Class.forName("com.mysql.jdbc.Driver");
+                                    Connection conn = null;
+                                    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
+
+                                    Statement stmnt2 = null;
+                                    String sql2 = "Select name from user where username = '" + receiver + "'";
+                                    stmnt2 = conn.createStatement();
+                                    rset2 = stmnt2.executeQuery(sql2);
+
+                                } catch (Exception ex) {
+                                    out.println("Unable to connect to database.");
+                                }
+                                while (rset2.next()) {
+                                    name = rset2.getString("name");
+                                }
+                                out.print("<a href=newChat.jsp?sendto=" + receiver + "&sendto2=" + name + ">" + chat + "</a>");
+                            }
+                            %>
+                    </tr>
+                    <%
+                            }
+
+                            prevSender = sender;
+                            prevReceiver = receiver;
+                            previd = temp;
+                            prevDate = date;
+                            prevChat = chat;
+                        }
+                    %>
+                </table>
             </div>
+        </div>
     </body>
     <script>
 // Get the modal

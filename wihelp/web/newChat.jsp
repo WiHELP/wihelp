@@ -18,6 +18,7 @@
 
             String user = (String) session.getAttribute("userSession");
             String user2 = (String) session.getAttribute("userSessionName");
+            String user3 = (String) session.getAttribute("userType");
             String sendTo = request.getParameter("sendto");
             String sendTo2 = request.getParameter("sendto2");
             String newMessage = request.getParameter("newMessage");
@@ -26,6 +27,9 @@
             ResultSet rset = null;
             ResultSet rset1 = null;
             ResultSet rset2 = null;
+            ResultSet rsetset = null;
+
+            String setting = null;
 
             int count = 1;
             int count2 = 1;
@@ -52,6 +56,18 @@
                 Statement stmnt2 = null;
                 stmnt2 = conn.createStatement();
                 rset2 = stmnt2.executeQuery(sql2);
+
+                if (user3.equals("counselor")) {
+                    String sqlsetting = "Select setting from patient where username='" + sendTo + "'";
+                    Statement stmntset = null;
+                    stmntset = conn.createStatement();
+                    rsetset = stmntset.executeQuery(sqlsetting);
+
+                    while (rsetset.next()) {
+                        setting = rsetset.getString("setting");
+                    }
+                }
+                //      out.print(setting);
 
                 while (rset.next()) {
                     count++;
@@ -162,7 +178,22 @@
         <div class="wrapper">
             <div class="inner" style="">
                 <div class="row uniform">
+                    <%                        if (user3.equals("patient")) {
+                    %>
                     <h1 class="major 10u">Counselor : <%=sendTo2%></h1>
+                    <%
+                    } else if (user3.equals("counselor")) {
+                        if (setting.equals("visible")) {
+                    %>  
+                    <h1 class="major 10u">Patient : <%=sendTo2%></h1>
+                    <%
+                    } else {
+                    %>
+                    <h1 class="major 10u">Patient :anonymous</h1>
+                    <%
+                            }
+                        }
+                    %>
                     <div class="2u">
                         <a href="chat.jsp" class="button">Back</a>
                     </div>
@@ -171,22 +202,22 @@
                     <%
                         while (rset.next()) {
                     %>
-                    <%                        
-                       if (user.equals(rset.getString("sender"))) {
+                    <%
+                        if (user.equals(rset.getString("sender"))) {
                     %>
                     <div style="direction:rtl;">
-                    <div style="border-radius:5px;display:inline-block;padding-right:5px;margin:2px;padding-left:5px;background-color:white;color:black;">
-                        <%out.print(rset.getString("conversationContent"));%>
-                    </div>    
+                        <div style="border-radius:5px;display:inline-block;padding-right:5px;margin:2px;padding-left:5px;background-color:white;color:black;">
+                            <%out.print(rset.getString("conversationContent"));%>
+                        </div>    
                     </div>
 
                     <%
                     } else {
                     %>
                     <div style="direction:ltr;">
-                    <div style="border-radius:5px;display:inline-block;padding-right:5px;margin:2px;padding-left:5px;background-color:white;color:black;">
-                        <%out.print(rset.getString("conversationContent"));%>
-                    </div>
+                        <div style="border-radius:5px;display:inline-block;padding-right:5px;margin:2px;padding-left:5px;background-color:white;color:black;">
+                            <%out.print(rset.getString("conversationContent"));%>
+                        </div>
                     </div>
                     <%
                             }
