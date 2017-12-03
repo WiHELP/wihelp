@@ -12,9 +12,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="assets/css/main.css" />
 
         <%
-            
+
             String user = (String) session.getAttribute("userSession");
             String user2 = (String) session.getAttribute("userSessionName");
             String sendTo = request.getParameter("sendto");
@@ -37,7 +38,7 @@
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
-                String sql = "SELECT * FROM chat where sender = '" + user + "' and receiver = '" + sendTo + "' or sender = '"+sendTo+"' and receiver = '"+user+"'";
+                String sql = "SELECT * FROM chat where sender = '" + user + "' and receiver = '" + sendTo + "' or sender = '" + sendTo + "' and receiver = '" + user + "'";
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
@@ -71,7 +72,7 @@
                     String prevSender = "";
                     String prevReceiver = "";
                     while (rset1.next()) {
-                        
+
                         if (rset1.getString("sender").equals(prevSender) && rset1.getString("receiver").equals(prevReceiver) || rset1.getString("receiver").equals(prevSender) && rset1.getString("sender").equals(prevReceiver)) {
                             row = count3;
                             continue;
@@ -86,13 +87,12 @@
                     }
                 }
 
-                out.print(row + "<br>");
-                out.print(count + "<br>");
-                out.print(date + "<br>");
-                out.print(newMessage + "<br>");
-                out.print(user + "<br>");
-                out.print(sendTo + "<br>");
-
+                //        out.print(row + "<br>");
+                //        out.print(count + "<br>");
+                //        out.print(date + "<br>");
+                //        out.print(newMessage + "<br>");
+                //        out.print(user + "<br>");
+                //        out.print(sendTo2 + "<br>");
             } catch (Exception ex) {
                 out.println("Unable to connect to database.");
             }
@@ -114,25 +114,26 @@
                     PreparedStatement stmnt = null;
                     stmnt = conn.prepareStatement(sql3);
 
-                    if(count <10)
-                        finalCount = "000000000"+String.valueOf(count);
-                    else if(count <100)
-                        finalCount = "00000000"+String.valueOf(count);
-                    else if(count <1000)
-                        finalCount = "0000000"+String.valueOf(count);
-                    else if(count <10000)
-                        finalCount = "000000"+String.valueOf(count);
-                    else if(count <100000)
-                        finalCount = "00000"+String.valueOf(count);
-                    else if(count <1000000)
-                        finalCount = "0000"+String.valueOf(count);
-                    else if(count <10000000)
-                        finalCount = "000"+String.valueOf(count);
-                    else if(count <100000000)
-                        finalCount = "00"+String.valueOf(count);
-                    else if(count <1000000000)
-                        finalCount = "0"+String.valueOf(count);
-                    
+                    if (count < 10) {
+                        finalCount = "000000000" + String.valueOf(count);
+                    } else if (count < 100) {
+                        finalCount = "00000000" + String.valueOf(count);
+                    } else if (count < 1000) {
+                        finalCount = "0000000" + String.valueOf(count);
+                    } else if (count < 10000) {
+                        finalCount = "000000" + String.valueOf(count);
+                    } else if (count < 100000) {
+                        finalCount = "00000" + String.valueOf(count);
+                    } else if (count < 1000000) {
+                        finalCount = "0000" + String.valueOf(count);
+                    } else if (count < 10000000) {
+                        finalCount = "000" + String.valueOf(count);
+                    } else if (count < 100000000) {
+                        finalCount = "00" + String.valueOf(count);
+                    } else if (count < 1000000000) {
+                        finalCount = "0" + String.valueOf(count);
+                    }
+
                     stmnt.setString(1, String.valueOf(row));
                     stmnt.setString(2, finalCount);
                     stmnt.setString(3, newMessage);
@@ -142,7 +143,7 @@
 
                     stmnt.executeUpdate();
 
-                    String sql = "SELECT * FROM chat where sender = '" + user + "' and receiver = '" + sendTo + "' or sender = '"+sendTo+"' and receiver = '"+user+"'";
+                    String sql = "SELECT * FROM chat where sender = '" + user + "' and receiver = '" + sendTo + "' or sender = '" + sendTo + "' and receiver = '" + user + "'";
                     Statement stmnt1 = null;
                     stmnt1 = conn.createStatement();
                     rset = stmnt1.executeQuery(sql);
@@ -158,36 +159,62 @@
     <%
     %>
     <body>
-        <h1>Counselor : <%=sendTo2%></h1>
-        <div>
-            <%
-
-                while (rset.next()) {
-
-            %>
-            <div>
-                <%out.print(rset.getString("conversationContent"));%>
-            </div>
-            <%
-                }
-
-            %>
-
-        </div>
-        <div>
-            <form action="newChat.jsp">
-                <%  
-                    out.print("<input type=\"text\" name=\"sendto\" value=\"" + sendTo + "\" hidden>  ");                  
-                    out.print("<input type=\"text\" name=\"sendto2\" value=\"" + sendTo2 + "\" hidden>  ");
-                %>
-
-                <input type="text" id="messagetxt" name="newMessage">  
-                <input type="submit" hidden>
-            </form>
-                
-                <div>
-                    <a href="chat.jsp"><button>Back</button></a>
+        <div class="wrapper">
+            <div class="inner" style="">
+                <div class="row uniform">
+                    <h1 class="major 10u">Counselor : <%=sendTo2%></h1>
+                    <div class="2u">
+                        <a href="chat.jsp" class="button">Back</a>
+                    </div>
                 </div>
+                <div style="height:500px;width:100%;overflow-y:scroll;display: inline-block;">
+                    <%
+                        while (rset.next()) {
+                    %>
+                    <%                        
+                       if (user.equals(rset.getString("sender"))) {
+                    %>
+                    <div style="direction:rtl;">
+                    <div style="border-radius:5px;display:inline-block;padding-right:5px;margin:2px;padding-left:5px;background-color:white;color:black;">
+                        <%out.print(rset.getString("conversationContent"));%>
+                    </div>    
+                    </div>
+
+                    <%
+                    } else {
+                    %>
+                    <div style="direction:ltr;">
+                    <div style="border-radius:5px;display:inline-block;padding-right:5px;margin:2px;padding-left:5px;background-color:white;color:black;">
+                        <%out.print(rset.getString("conversationContent"));%>
+                    </div>
+                    </div>
+                    <%
+                            }
+                        }
+                    %>
+                </div>
+                <div>
+                    <%                        out.print("<form action=\'newChat.jsp?sendto=" + sendTo + "&sendto2=" + sendTo2 + "\'>");
+                    %>
+
+                    <%                    out.print("<input type=\"hidden\" name=\"sendto\" value=\"" + sendTo + "\">  ");
+                        out.print("<input type=\"hidden\" name=\"sendto2\" value=\"" + sendTo2 + "\">  ");
+                    %>
+
+                    <input type="text" autocomplete="off" id="messagetxt" name="newMessage">  
+                    <input type="submit" hidden>
+                    </form>
+
+
+                </div>
+            </div>
         </div>
     </body>
+
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
 </html>

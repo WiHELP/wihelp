@@ -11,13 +11,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>WiHELP</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
         <link rel="stylesheet" href="assets/css/main.css" />
-        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
         <style>
             /* The Modal (background) */
@@ -37,7 +33,7 @@
 
             /* Modal Content */
             .modal-content {
-                background-color: #2e3141;
+                background-color: #282626;
                 margin: auto;
                 padding: 20px;
                 border: 1px solid #888;
@@ -76,27 +72,14 @@
         %>
     </head>
     <body>
-
-        <!-- Scripts -->
-        <script src="assets/js/skel.min.js"></script>
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-        <script src="assets/js/main.js"></script>
-
-        <!-- Page Wrapper -->
-        <div id="page-wrapper">
-
-            <header id="header">
-                <a href="homepage/homeview.jsp"><h2>WiHELP</h2></a>
+       <section class="banner" role="banner">
+            <header id="header" class="alt">
+                <h2><a href="homepage/homeview.jsp">WiHELP</a></h2>
                 <nav>
                     <a href="#menu">Menu</a>
-
                 </nav>
             </header>
 
-            <!-- Menu -->
             <nav id="menu">
                 <div class="inner">
                     <h2>Menu</h2>
@@ -110,67 +93,63 @@
                     <a href="#" class="close">Close</a>
                 </div>
             </nav>
+        </section>
+        <div class="wrapper">
+            <div class="inner">
+                 
+                <div>
+                    <h1>Forum</h1>
+                    <button id="myBtn">New Thread</button>
 
-            <!-- Banner -->
-            <section id="banner">
-                <div class="inner">
-                    <div class="logo"><span class=""></span></div>
-                    <center><h2>FORUM</h2></center>
-                    <center><p>Join a forum.</p></center>
-                </div>
-            </section>
+                    <div id="myModal" class="modal">
 
-            <div class="wrapper">
-                <div class="inner">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <form method="post" action="createForum">
+                                Forum title:<input type="text" name="forumTitle">
+                                Forum body:<textarea type="text" name="forumContent"></textarea>
 
-                    <section>
-
-                        <button id="myBtn">Start New Thread</button>
-                        <br><br>
-
-                        <div id="myModal" class="modal">
-
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <form method="post" action="createForum">
-                                    Forum title:<input type="text" name="forumTitle">
-                                    <br>
-                                    Forum body:<textarea type="text" name="forumContent"></textarea>
-                                    <br>
-                                    <input type="submit">
-                                </form>
-                            </div>
-
+                                <input type="submit">
+                            </form>
                         </div>
-                        <table>                
-                            <%
-                                String forumid = "";
-                                while (rset.next()) {
-                                    String title = rset.getString("forumTitle");
-                                    String starter = rset.getString("startUser");
-                                    String fId = rset.getString("forumId");
-                                    if (!forumid.equals(fId)) {
-                                        forumid = fId;
-                            %>
 
-                            <tr>
-                                <td rowspan="2"><%out.print("<a href=forumThread.jsp?forumid=" + fId + "&forumtitle=" + title + ">" + title + "</a>");%>
-                                <td>Start date: <%=rset.getString("startDate")%>
-                            </tr>
-                            <tr>
-                                <td>Start by: <%=starter%>
-                            </tr>
+                    </div>
+                    <table>                
+                        <%
+                            String forumid = "";
+                            while (rset.next()) {
+                                String title = rset.getString("forumTitle");
+                                String starter = rset.getString("startUser");
+                                String fId = rset.getString("forumId");
+                                if (!forumid.equals(fId)) {
+                                    forumid = fId;
+                        %>
 
-                            <%
-                                    }
+                        <tr>
+                            <td rowspan="2"><%out.print("<a href='forumThread.jsp?forumid=" + fId + "&forumtitle=" + title + "'>" + title + "</a>");%>
+                            <td>Start date: <%=rset.getString("startDate")%>
+                        </tr>
+                        <tr>
+                            <td>Start by: <%=starter%>
+                        </tr>
+
+                        <%
                                 }
-                            %>
-                        </table>
-                    </section>
+                            }
+                        %>
+                    </table>
                 </div>
             </div>
+        </div>
     </body>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");

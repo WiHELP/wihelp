@@ -36,10 +36,15 @@ public class formEvent extends HttpServlet {
         
         PrintWriter out = response.getWriter();
         
-        PreparedStatement stmt = null;
+        Statement stmt1 = null;
+        PreparedStatement stmt2 = null;
+        
+        ResultSet rset = null;
+        
         String eventName = request.getParameter("eventName");
         String eventDate = request.getParameter("eventDate");
-        String eventLocation = request.getParameter("eventLocation");
+        String eventLocation = request.getParameter("eventLocationName");
+        String eventPosition = request.getParameter("eventLocationPos");
         String description = request.getParameter("description");       
      
         
@@ -49,15 +54,27 @@ public class formEvent extends HttpServlet {
             Connection conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
             
-            String sql = "INSERT into event(eventName, eventDate, eventLocation, description) values (?,?,?,?)";
-            stmt = conn.prepareStatement(sql);
+            String sql1 = "Select * from event";
+            stmt1 = conn.createStatement();
+            rset = stmt1.executeQuery(sql1);
             
-            stmt.setString(1, eventName);
-            stmt.setString(2, eventDate);
-            stmt.setString(3, eventLocation);
-            stmt.setString(4, description);
+            int count = 1;
+            while(rset.next()){
+                count++;
+            }
             
-            stmt.executeUpdate();
+            
+            String sql2 = "INSERT into event values (?,?,?,?,?,?)";
+            stmt2 = conn.prepareStatement(sql2);
+            
+            stmt2.setString(1, String.valueOf(count));
+            stmt2.setString(2, eventName);
+            stmt2.setString(3, eventDate);
+            stmt2.setString(4, eventLocation);
+            stmt2.setString(5, eventPosition);
+            stmt2.setString(6, description);
+            
+            stmt2.executeUpdate();
             out.print("test");
             response.sendRedirect("listevent.jsp");
             

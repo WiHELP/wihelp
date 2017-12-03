@@ -27,7 +27,7 @@
                 Connection conn = DriverManager.getConnection(
                         "jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
 
-                String sql = "SELECT eventName, eventDate, eventLocation, description from event";
+                String sql = "SELECT eventName, eventDate, eventLocation, eventPosition, description from event";
                 Statement stmt = null;
                 stmt = conn.createStatement();
                 rset = stmt.executeQuery(sql);
@@ -111,7 +111,10 @@
                                         <td><%=rset.getString("eventName")%></td>      
                                         <td><%=rset.getString("eventDate")%></td>
                                         <td><%=rset.getString("description")%></td>
-                                        <td><a href="#"><%=rset.getString("eventLocation")%></a></td>
+                                        <%
+                                            out.print("<td><a target=\"_blank\" href='https://www.google.com/maps/dir/?api=1&destination="+rset.getString("eventPosition")+"'>"+rset.getString("eventLocation")+"</a></td>");
+                                        %>
+                                        
 
                                     </tr>
                                     <%
@@ -125,6 +128,7 @@
                             </ul>
 
                             <jsp:include page="formEvent.jsp"></jsp:include>
+                            <jsp:include page="selectMap.jsp"></jsp:include>
 
                     </section>                                        
                 </div>

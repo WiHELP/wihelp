@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %> 
+<%@ page import="java.io.*" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html class="no-js" lang="">
 
@@ -19,6 +22,34 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <%
+
+            String user = (String) session.getAttribute("userSession");
+            String user2 = (String) session.getAttribute("userSessionName");
+            String user3 = (String) session.getAttribute("userType");
+            String setting = null;
+            
+            if(user2.equals("patient")){
+            ResultSet rset = null;
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection conn = null;
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
+                //          if(!connection.isClosed())
+                //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
+                //          connection.close();
+                String sql = "Select setting from patient where username='"+user+"'";
+                Statement stmnt = null;
+                stmnt = conn.createStatement();
+                rset = stmnt.executeQuery(sql);                
+                while (rset.next()) {
+                    setting = rset.getString("setting");
+                }
+            } catch (Exception ex) {
+                out.println("Unable to connect to database.");
+            }
+            }
+        %>
     </head>
 
     <body>
@@ -64,8 +95,8 @@
                     <div class="logo"><span class=""></span></div>
                     <center><h2>WiHELP</h2></center>
                     <center><p>Convenient, private online counseling and better forum. Anytime, anywhere.</p></center>
-                   
-                    
+
+
                 </div>
             </section>
 
@@ -73,7 +104,8 @@
             <div class="wrapper">
 
                 <div class="inner"> 
-                    <h1 class="major"><center>WELCOME, <%String user = (String) session.getAttribute("userSession"); out.print(user);%></center></h1>
+                    <h1 class="major"><center>WELCOME, USERNAME</center></h1>
+                    <center><%= setting %></center>
                     <section>
                         <div class="box alt" style="margin-top: 10%;">
                             <div class="row uniform">
