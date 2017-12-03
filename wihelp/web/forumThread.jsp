@@ -108,6 +108,7 @@
                         <li><a href="chat.jsp">Chat</a></li>
                         <li><a href="forum.jsp">Forum</a></li>
                         <li><a href="listevent.jsp">Event</a></li>
+                        <li><a href="#">LogOut</a></li>
                     </ul>
                     <a href="#" class="close">Close</a>
                 </div>
@@ -119,42 +120,40 @@
 
                     <section>
 
-                        <table border="1">
-                            <tr>
-                                <td colspan="3"><h1><%=fTitle%></h1>
-                            </tr>
-                            <%
-                                while (rset.next()) {
-                                    if (rset.isFirst()) {
+                        <div>                           
+                            <center><h1>Forum Title: <%=fTitle%></h1></center>
+                                    <%
+                                        while (rset.next()) {
+                                            if (rset.isFirst()) {
 
 
-                            %>
-                            <tr>
-                                <td><center><img src="images/user.png" alt="" />
-                                <br><%=rset.getString("sender")%><br><%=rset.getString("userType")%> </center> 
-                            <td rowspan="3" colspan="2"><%=rset.getString("conversationContent")%>
+                                    %>
+                        </div>
 
-                                </tr>
+                        <br>
+                        <table style="border: 1px solid black; ">
                             <tr>
-                                <td>
+                                <td colspan="2">
+                            <center>
+                                <img src="images/user.png" alt="" />
+                                <br>
+                                <%=rset.getString("sender")%>
+                                <br>
+                                <%=rset.getString("userType")%> 
+                            </center> 
+                            </td>
+                            <td colspan="2" ><%=rset.getString("conversationContent")%></td>
 
                             </tr>
                             <tr>
-                                <td>              
-                            </tr>
-                            <tr>
-                                <td>
-                                <td>
-                                <td align="right">#<%=rset.getString("conversationId")%>
-                            </tr>
-                            <tr>
-                                <td>
-                                <td>Created on:
-                                <td><%=rset.getString("startDate")%>
+                                <td colspan="2">Created on: <%=rset.getString("startDate")%>
+                                <td colspan="2" align="right">#<%=rset.getString("conversationId")%>
                             </tr>
                             <%
                             } else {
                             %>
+                        </table>
+                        <table style="border: 1px solid black; ">
                             <tr>
                                 <td>Gambar orang
                                 <td rowspan="3" colspan="2"><%=rset.getString("conversationContent")%>
@@ -181,10 +180,11 @@
                                     }
                                 }
                             %>
-                            <tr>
-                                <td>
-                                <td colspan="2"><button id="myBtn">Reply to thread</button>
-                            </tr>
+                        </table>
+                        <tr>
+                            <td>
+                            <td colspan="2"><button id="myBtn">Reply to thread</button>
+                        </tr>
                         </table>
                         <div id="myModal" class="modal">
 

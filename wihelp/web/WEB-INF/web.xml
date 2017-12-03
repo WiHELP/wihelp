@@ -32,6 +32,10 @@
         <servlet-name>forumReply</servlet-name>
         <servlet-class>WiHELP.forumReply</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>WiHELP.Logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>forumReply</servlet-name>
         <url-pattern>/forumReply</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
