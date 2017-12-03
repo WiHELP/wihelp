@@ -31,7 +31,7 @@
         <div id="page-wrapper">
 
             <header id="header">
-                <h2><a href="homepage/homeview.jsp">WiHELP</a></h2>
+                <a href="homepage/homeview.jsp"><h2>WiHELP</h2></a>
                 <nav>
                     <a href="#menu">Menu</a>
                 </nav>
@@ -46,6 +46,7 @@
                         <li><a href="chat.jsp">Chat</a></li>
                         <li><a href="forum.jsp">Forum</a></li>
                         <li><a href="listevent.jsp">Event</a></li>
+                        <li><a href="#">LogOut</a></li>
                     </ul>
                     <a href="#" class="close">Close</a>
                 </div>
@@ -170,7 +171,7 @@
         <div class="wrapper">
             <div class="inner">
                 <section>
-                    <h2> RESULT OF DEPRESSION ANXIETY STRESS SOCRE TEST </h2>
+                    <h2> RESULT OF DEPRESSION ANXIETY STRESS SCORE TEST </h2>
                     <div class="table-wrapper">
                         <table class="alt">
                             <thead>

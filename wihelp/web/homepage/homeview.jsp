@@ -82,8 +82,8 @@
                     <h2>Menu</h2>
                     <ul class="links">
                         <li><a href="homeview.jsp">Home</a></li>
-                        <!--<li><a href="Login.jsp">Log In</a></li>
-                        <li><a href="register.jsp">GET STARTED</a></li>-->
+                        <li><a href="#">LogOut</a></li>
+                        <!--<li><a href="register.jsp">GET STARTED</a></li>-->
                     </ul>
                     <a href="#" class="close">Close</a>
                 </div>
