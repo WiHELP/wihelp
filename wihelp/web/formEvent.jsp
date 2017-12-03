@@ -71,7 +71,7 @@
                         </div>
                         <div class="6u 12u(xsmall)">
                             <label for="eventDate">Date</label>
-                            <input type="date" name="eventDate" id="eventDate" required />
+                            <input type="text" name="eventDate" id="eventDate" required />
                         </div>
                         <div class="6u 12u(small)">
                             <label for="eventLocationName">Location Name</label>                             
