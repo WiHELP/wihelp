@@ -36,9 +36,12 @@
 
             <!-- Header -->
             <header id="header" class="alt">
-                <h2><a href="homeview.jsp">WiHELP</a></h2>
+                <a href="homeview.jsp"><h2>WiHELP</h2></a>
                 <nav>
                     <a href="#menu">Menu</a>
+                    <a href="../dassTest.html">
+                        <button id="myBtn" class="button">Screening Test</button>
+                    </a>
                 </nav>
             </header>
 
@@ -47,7 +50,7 @@
                 <div class="inner">
                     <h2>Menu</h2>
                     <ul class="links">
-                        <li><a href="homeview.jsp.jsp">Home</a></li>
+                        <li><a href="homeview.jsp">Home</a></li>
                         <!--<li><a href="Login.jsp">Log In</a></li>
                         <li><a href="register.jsp">GET STARTED</a></li>-->
                     </ul>
@@ -55,8 +58,20 @@
                 </div>
             </nav>
 
+            <!-- Banner -->
+            <section id="banner">
+                <div class="inner">
+                    <div class="logo"><span class=""></span></div>
+                    <center><h2>WiHELP</h2></center>
+                    <center><p>Convenient, private online counseling and better forum. Anytime, anywhere.</p></center>
+                   
+                    
+                </div>
+            </section>
+
+
             <div class="wrapper">
-                
+
                 <div class="inner"> 
                     <h1 class="major"><center>WELCOME, USERNAME</center></h1>
                     <section>
@@ -64,19 +79,35 @@
                             <div class="row uniform">
 
                                 <div class="4u">
+                                    <center><h3>Chat</h3></center>
                                     <span class="image fit">
                                         <a href="../chat.jsp">
                                             <img src="images/chat.png" alt="" />
                                         </a>
                                     </span>
                                 </div>
-                                <div class="4u"><span class="image fit"><a href="../forum.jsp"><img src="images/forum.png" alt="" /></a></span></div>
-                                <div class="4u"><span class="image fit"><a href="../listevent.jsp"><img src="images/share.png" alt="" /></a></span></div>
+                                <div class="4u">
+                                    <center><h3>Join Forum</h3></center>
+                                    <span class="image fit">
+                                        <a href="../forum.jsp">
+                                            <img src="images/forum.png" alt="" />
+                                        </a>
+                                    </span>
+                                </div>
+                                <div class="4u">
+                                    <center><h3>List of Event</h3></center>
+                                    <span class="image fit">
+                                        <a href="../listevent.jsp">
+                                            <img src="images/share.png" alt="" />
+                                        </a>
+                                    </span>
+                                </div>
 
                             </div>
                         </div>
                     </section>
                 </div>
             </div>
+        </div>
     </body>
 </html>

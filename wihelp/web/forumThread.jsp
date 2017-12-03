@@ -12,7 +12,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>WiHELP</title>
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
         <%
             ResultSet rset = null;
             String fId = request.getParameter("forumid");
@@ -51,7 +56,7 @@
 
             /* Modal Content */
             .modal-content {
-                background-color: #fefefe;
+                background-color: #2e3141;
                 margin: auto;
                 padding: 20px;
                 border: 1px solid #888;
@@ -76,114 +81,155 @@
     </head>
     <body>
 
+        <!-- Scripts -->
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
 
+        <div id="page-wrapper">
 
-        <table border="1">
-            <tr>
-                <td colspan="3"><h1><%=fTitle%></h1>
-            </tr>
-            <%
-                while (rset.next()) {
-                    if (rset.isFirst()) {
+            <header id="header">
+                <a href="homepage/homeview.jsp"><h2>WiHELP</h2></a>
+                <nav>
+                    <a href="#menu">Menu</a>
 
+                </nav>
+            </header>
 
-            %>
-            <tr>
-                <td>Gambar orang
-                <td rowspan="3" colspan="2"><%=rset.getString("conversationContent")%>
-
-            </tr>
-            <tr>
-                <td><%=rset.getString("sender")%>
-
-            </tr>
-            <tr>
-                <td><%=rset.getString("userType")%>                
-            </tr>
-            <tr>
-                <td>
-                <td>
-                <td align="right">#<%=rset.getString("conversationId")%>
-            </tr>
-            <tr>
-                <td>
-                <td>Created on:
-                <td><%=rset.getString("startDate")%>
-            </tr>
-            <%
-            } else {
-            %>
-            <tr>
-                <td>Gambar orang
-                <td rowspan="3" colspan="2"><%=rset.getString("conversationContent")%>
-
-            </tr>
-            <tr>
-                <td><%=rset.getString("sender")%>
-
-            </tr>
-            <tr>
-                <td><%=rset.getString("userType")%>                
-            </tr>
-            <tr>
-                <td>
-                <td>
-                <td align="right">#<%=rset.getString("conversationId")%>
-            </tr>
-            <tr>
-                <td>
-                <td>Replied on:
-                <td><%=rset.getString("conversationDate")%>
-            </tr>
-            <%
-                    }
-                }
-            %>
-            <tr>
-                <td>
-                <td colspan="2"><button id="myBtn">Reply to thread</button>
-            </tr>
-            </table>
-            <div id="myModal" class="modal">
-
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>
-                        <h1>Reply to: <%=fTitle%></h1>
-                        <form action="forumReply">
-                            <%
-                                out.print("<input type=\"text\" name=\"forumId\" value="+fId+" hidden>");
-                            %>
-                            <textarea name="reply"></textarea>
-                            <input type="submit" value="reply">
-                        </form>
-                    </p>
+            <!-- Menu -->
+            <nav id="menu">
+                <div class="inner">
+                    <h2>Menu</h2>
+                    <ul class="links">
+                        <li><a href="homepage/homeview.jsp">Home</a></li>
+                        <li><a href="chat.jsp">Chat</a></li>
+                        <li><a href="forum.jsp">Forum</a></li>
+                        <li><a href="listevent.jsp">Event</a></li>
+                    </ul>
+                    <a href="#" class="close">Close</a>
                 </div>
+            </nav>
 
+            <!-- Content -->
+            <div class="wrapper">
+                <div class="inner">
+
+                    <section>
+
+                        <table border="1">
+                            <tr>
+                                <td colspan="3"><h1><%=fTitle%></h1>
+                            </tr>
+                            <%
+                                while (rset.next()) {
+                                    if (rset.isFirst()) {
+
+
+                            %>
+                            <tr>
+                                <td><center><img src="images/user.png" alt="" />
+                                <br><%=rset.getString("sender")%><br><%=rset.getString("userType")%> </center> 
+                            <td rowspan="3" colspan="2"><%=rset.getString("conversationContent")%>
+
+                                </tr>
+                            <tr>
+                                <td>
+
+                            </tr>
+                            <tr>
+                                <td>              
+                            </tr>
+                            <tr>
+                                <td>
+                                <td>
+                                <td align="right">#<%=rset.getString("conversationId")%>
+                            </tr>
+                            <tr>
+                                <td>
+                                <td>Created on:
+                                <td><%=rset.getString("startDate")%>
+                            </tr>
+                            <%
+                            } else {
+                            %>
+                            <tr>
+                                <td>Gambar orang
+                                <td rowspan="3" colspan="2"><%=rset.getString("conversationContent")%>
+
+                            </tr>
+                            <tr>
+                                <td><%=rset.getString("sender")%>
+
+                            </tr>
+                            <tr>
+                                <td><%=rset.getString("userType")%>                
+                            </tr>
+                            <tr>
+                                <td>
+                                <td>
+                                <td align="right">#<%=rset.getString("conversationId")%>
+                            </tr>
+                            <tr>
+                                <td>
+                                <td>Replied on:
+                                <td><%=rset.getString("conversationDate")%>
+                            </tr>
+                            <%
+                                    }
+                                }
+                            %>
+                            <tr>
+                                <td>
+                                <td colspan="2"><button id="myBtn">Reply to thread</button>
+                            </tr>
+                        </table>
+                        <div id="myModal" class="modal">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>
+                                <h1>Reply to: <%=fTitle%></h1>
+                                <form action="forumReply">
+                                    <%
+                                        out.print("<input type=\"text\" name=\"forumId\" value=" + fId + " hidden>");
+                                    %>
+                                    <textarea name="reply"></textarea>
+                                    <input type="submit" value="reply">
+                                </form>
+                                </p>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
             </div>
+        </div>
     </body>
     <script>
-// Get the modal
+        // Get the modal
         var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
+        // Get the button that opens the modal
         var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
+        // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+        // When the user clicks the button, open the modal 
         btn.onclick = function () {
             modal.style.display = "unset";
         }
 
-// When the user clicks on <span> (x), close the modal
+        // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = "none";
         }
 
-// When the user clicks anywhere outside of the modal, close it
+        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";

@@ -32,6 +32,10 @@
         <servlet-name>forumReply</servlet-name>
         <servlet-class>WiHELP.forumReply</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>testResult</servlet-name>
+        <servlet-class>WiHELP.testResult</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>forumReply</servlet-name>
         <url-pattern>/forumReply</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>testResult</servlet-name>
+        <url-pattern>/testResult</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -11,8 +11,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>WiHELP</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
         <style>
             /* The Modal (background) */
             .modal {
@@ -31,7 +37,7 @@
 
             /* Modal Content */
             .modal-content {
-                background-color: #fefefe;
+                background-color: #2e3141;
                 margin: auto;
                 padding: 20px;
                 border: 1px solid #888;
@@ -53,10 +59,10 @@
                 cursor: pointer;
             }
         </style>
-        
+
         <%
             ResultSet rset = null;
-            try{
+            try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = null;
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
@@ -64,78 +70,127 @@
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         %>
     </head>
     <body>
-        <div>
-            <h1>Forum</h1>
-            <button id="myBtn">New Thread</button>
 
-            <div id="myModal" class="modal">
+        <!-- Scripts -->
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
 
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <form method="post" action="createForum">
-                        Forum title:<input type="text" name="forumTitle">
-                        Forum body:<textarea type="text" name="forumContent"></textarea>
-                        
-                        <input type="submit">
-                    </form>
+        <!-- Page Wrapper -->
+        <div id="page-wrapper">
+
+            <header id="header">
+                <a href="homepage/homeview.jsp"><h2>WiHELP</h2></a>
+                <nav>
+                    <a href="#menu">Menu</a>
+
+                </nav>
+            </header>
+
+            <!-- Menu -->
+            <nav id="menu">
+                <div class="inner">
+                    <h2>Menu</h2>
+                    <ul class="links">
+                        <li><a href="homepage/homeview.jsp">Home</a></li>
+                        <li><a href="chat.jsp">Chat</a></li>
+                        <li><a href="forum.jsp">Forum</a></li>
+                        <li><a href="listevent.jsp">Event</a></li>
+                    </ul>
+                    <a href="#" class="close">Close</a>
                 </div>
+            </nav>
 
-            </div>
-            <table>                
-            <%
-                String forumid = "";
-                while(rset.next()){
-                    String title = rset.getString("forumTitle");
-                    String starter = rset.getString("startUser");
-                    String fId = rset.getString("forumId");
-                    if(!forumid.equals(fId)){
-                        forumid = fId;
-                        %>
-                            
-                        <tr>
-                                <td rowspan="2"><%out.print("<a href=forumThread.jsp?forumid="+fId+"&forumtitle="+title+">"+title+"</a>");%>
+            <!-- Banner -->
+            <section id="banner">
+                <div class="inner">
+                    <div class="logo"><span class=""></span></div>
+                    <center><h2>FORUM</h2></center>
+                    <center><p>Join a forum.</p></center>
+                </div>
+            </section>
+
+            <div class="wrapper">
+                <div class="inner">
+
+                    <section>
+
+                        <button id="myBtn">Start New Thread</button>
+                        <br><br>
+
+                        <div id="myModal" class="modal">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <form method="post" action="createForum">
+                                    Forum title:<input type="text" name="forumTitle">
+                                    <br>
+                                    Forum body:<textarea type="text" name="forumContent"></textarea>
+                                    <br>
+                                    <input type="submit">
+                                </form>
+                            </div>
+
+                        </div>
+                        <table>                
+                            <%
+                                String forumid = "";
+                                while (rset.next()) {
+                                    String title = rset.getString("forumTitle");
+                                    String starter = rset.getString("startUser");
+                                    String fId = rset.getString("forumId");
+                                    if (!forumid.equals(fId)) {
+                                        forumid = fId;
+                            %>
+
+                            <tr>
+                                <td rowspan="2"><%out.print("<a href=forumThread.jsp?forumid=" + fId + "&forumtitle=" + title + ">" + title + "</a>");%>
                                 <td>Start date: <%=rset.getString("startDate")%>
                             </tr>
                             <tr>
                                 <td>Start by: <%=starter%>
                             </tr>
-                            
-                        <%
-                    }
-                }
-            %>
-            </table>
-        </div>
+
+                            <%
+                                    }
+                                }
+                            %>
+                        </table>
+                    </section>
+                </div>
+            </div>
     </body>
     <script>
-// Get the modal
+        // Get the modal
         var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
+        // Get the button that opens the modal
         var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
+        // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+        // When the user clicks the button, open the modal 
         btn.onclick = function () {
             modal.style.display = "unset";
         }
 
-// When the user clicks on <span> (x), close the modal
+        // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = "none";
         }
 
-// When the user clicks anywhere outside of the modal, close it
+        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";

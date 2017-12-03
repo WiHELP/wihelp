@@ -6,7 +6,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.io.*" %>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
 <!DOCTYPE html>
+
 <html>
     <head>
         <title>WiHELP</title>
@@ -16,7 +21,34 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        
+        <%
 
+            ResultSet rset = null;
+            String user = (String) session.getAttribute("userSession");
+            int stress=0;
+            int anxiety=0;
+            int depression=0;
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection conn = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
+
+                String sql = "SELECT stress, anxiety, depression from testresult where username = '"+user+"'";
+                Statement stmt = null;
+                stmt = conn.createStatement();
+                rset = stmt.executeQuery(sql);
+              while(rset.next())
+              {
+                  stress = rset.getInt("stress");
+                  anxiety = rset.getInt("anxiety");
+                  depression = rset.getInt("depression");
+              }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        %>
+        
     </head>
     <body>
         <!-- Scripts -->
@@ -50,127 +82,52 @@
                     <a href="#" class="close">Close</a>
                 </div>
             </nav>
-            
-            
-        
-        <%
-
-            int stress = 0;
-            int anxiety = 0;
-            int depression = 0;
+        <%   
             String result1="";
             String result2="";
-            String result3=""; 
-            int i = 1;
-            int answer[] = new int[22];
-            for (int a = 1; a < 22; a++) {
-                answer[a] = Integer.parseInt(request.getParameter("r[" + a + "]"));
-            }
-        %>
+            String result3="";
+        if (stress < 8) {
+            result1 = "Normal";
+        } else if (stress < 10) {
+            result1 = "Mild";
+        } else if (stress < 14) {
+            result1 = "Moderate";
+        } else if (stress < 18) {
+            result1 = "Severe";
+        } else if (stress >= 18) {
+            result1 = "Extremely severe";
+        }
 
-        <%
-        //       for(int b=1; b<22; b++){
-        //           out.print(answer[b]+"<br>");
-       //        }
-            
-            for (int c = 1; c < 22; c++) {
-                if (c == 1 || c == 6 || c == 8 || c == 11 || c == 12 || c == 14 || c == 18) {
-                   stress+=answer[c];
-                //   out.print("stress");
-                }
-                else if (c == 2 || c == 4 || c == 7 || c == 9 || c == 15 || c == 19 || c == 20) {
-                   anxiety+=answer[c];
-                //   out.print("anxiety");
-                }
-                else if (c == 3 || c == 5 || c == 10 || c == 13 || c == 16 || c == 17 || c == 21) {
-                   depression+=answer[c];
-                //   out.print("depression");
-                }
-            }
+        if (anxiety < 5) {
+            result2 = "Normal";
+        } else if (anxiety < 7) {
+            result2 = "Mild";
+        } else if (anxiety < 9) {
+            result2 = "Moderate";
+        } else if (anxiety < 11) {
+            result2 = "Severe";
+        } else if (anxiety >= 11) {
+            result2 = "Extremely severe";
+        }
 
-          //  out.print(stress+"<br>"+anxiety+"<br>"+depression+"<br>");
-            if (stress < 8)
-            {
-                result1 = "Normal";
-            }
-            else if (stress < 10)
-            {
-                result1  = "Mild";
-            }
-            
-            else if (stress <14)
-            {
-                result1 = "Moderate";
-            }
-            
-            else if (stress < 18)
-            {
-                result1 = "Severe";
-            }
-            
-            else if (stress >= 18)
-            {
-                result1 = "Extremely severe";
-            }
-            
-            if (anxiety < 5)
-            {
-                result2 = "Normal";
-            }
-            else if (anxiety < 7)
-            {
-                result2  = "Mild";
-            }
-            
-            else if (anxiety < 9)
-            {
-                result2 = "Moderate";
-            }
-            
-            else if (anxiety < 11)
-            {
-                result2 = "Severe";
-            }
-            
-            else if  (anxiety >= 11)
-            {
-                result2 = "Extremely severe";
-            }
-            
-            if (depression < 6)
-            {
-                result3 = "Normal";
-            }
-            else if (depression < 8)
-            {
-                result3  = "Mild";
-            }
-            
-            else if (depression < 11)
-            {
-                result3 = "Moderate";
-            }
-            
-            else if (depression < 15)
-            {
-                result3 = "Severe";
-            }
-            
-            else if (depression >= 15)
-            {
-                result3 = "Extremely severe";
-            }
-            
-            
-            //out.print("Stress Score: " + stress + " [" + result1 + "]<br>");
-            //out.print("Anxiety Score: " + anxiety + " [" + result2 + "]<br>");
-            //out.print("Depression Score: " + depression + " [" + result3 + "]<br>");
+        if (depression < 6) {
+            result3 = "Normal";
+        } else if (depression < 8) {
+            result3 = "Mild";
+        } else if (depression < 11) {
+            result3 = "Moderate";
+        } else if (depression < 15) {
+            result3 = "Severe";
+        } else if (depression >= 15) {
+            result3 = "Extremely severe";
+        }    
+        
         %>
         
         <div class="wrapper">
             <div class="inner">
                 <section>
-                    <h2> RESULT OF DEPRESSION ANXIETY STRESS SOCRE TEST </h2>
+                    <h2> RESULT OF DEPRESSION ANXIETY STRESS SCORE TEST </h2>
                     <div class="table-wrapper">
                         <table class="alt">
                             <thead>
@@ -184,7 +141,7 @@
                             <tbody>
                             <tr>
                                 <td> Score </td>
-                                <td> <%=stress%> </td>
+                                <td> <%= stress%> </td>
                                 <td> <%=anxiety%> </td>
                                 <td> <%=depression%> </td>
                             </tr>
