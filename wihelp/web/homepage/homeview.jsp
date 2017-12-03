@@ -51,8 +51,8 @@
                     <h2>Menu</h2>
                     <ul class="links">
                         <li><a href="homeview.jsp">Home</a></li>
-                        <!--<li><a href="Login.jsp">Log In</a></li>
-                        <li><a href="register.jsp">GET STARTED</a></li>-->
+                        <li><a href="#">LogOut</a></li>
+                        <!--<li><a href="register.jsp">GET STARTED</a></li>-->
                     </ul>
                     <a href="#" class="close">Close</a>
                 </div>
@@ -73,7 +73,7 @@
             <div class="wrapper">
 
                 <div class="inner"> 
-                    <h1 class="major"><center>WELCOME, USERNAME</center></h1>
+                    <h1 class="major"><center>WELCOME, <%String user = (String) session.getAttribute("userSession"); out.print(user);%></center></h1>
                     <section>
                         <div class="box alt" style="margin-top: 10%;">
                             <div class="row uniform">
