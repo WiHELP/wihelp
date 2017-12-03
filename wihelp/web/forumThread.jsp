@@ -12,6 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="assets/css/main.css" />
         <title>JSP Page</title>
         <%
             ResultSet rset = null;
@@ -51,7 +52,7 @@
 
             /* Modal Content */
             .modal-content {
-                background-color: #fefefe;
+                background-color: #282626;
                 margin: auto;
                 padding: 20px;
                 border: 1px solid #888;
@@ -76,93 +77,90 @@
     </head>
     <body>
 
+        <div class="wrapper">
+            <div class="inner">
 
 
-        <table border="1">
-            <tr>
-                <td colspan="3"><h1><%=fTitle%></h1>
-            </tr>
-            <%
-                while (rset.next()) {
-                    if (rset.isFirst()) {
+
+                <h2 class="major"><%=fTitle%></h2>
+
+                <%
+                    while (rset.next()) {
+                        if (rset.isFirst()) {
 
 
-            %>
-            <tr>
-                <td>Gambar orang
-                <td rowspan="3" colspan="2"><%=rset.getString("conversationContent")%>
+                %>
+                <table style="margin-bottom:5px;">
+                    <tr>
+                        <td rowspan="3" style="width:200px">
+                            <img style="height:auto;width:auto;max-height:150px;max-width:150px;"src="images/user.jpg"><br>
+                            <%=rset.getString("sender")%><br>
+                            <%=rset.getString("userType")%>
+                        <td colspan="3"><%=rset.getString("conversationContent")%>
+                    </tr>                  
+                    <tr>                        
+                        <td>Created on:
+                        <td><%=rset.getString("startDate")%>
+                        <td align="right">#<%=rset.getString("conversationId")%>
+                    </tr>                                                
+                </table>                 
+                <%
+                } else {
+                %>
+                <table style="margin-bottom:5px">
+                    <tr>
+                        <td rowspan="3" style="width:200px">
+                            <img style="height:auto;width:auto;max-height:150px;max-width:150px;"src="images/user.jpg"><br>
+                            <%=rset.getString("sender")%><br>
+                            <%=rset.getString("userType")%>
+                        <td colspan="3"><%=rset.getString("conversationContent")%>
 
-            </tr>
-            <tr>
-                <td><%=rset.getString("sender")%>
-
-            </tr>
-            <tr>
-                <td><%=rset.getString("userType")%>                
-            </tr>
-            <tr>
-                <td>
-                <td>
-                <td align="right">#<%=rset.getString("conversationId")%>
-            </tr>
-            <tr>
-                <td>
-                <td>Created on:
-                <td><%=rset.getString("startDate")%>
-            </tr>
-            <%
-            } else {
-            %>
-            <tr>
-                <td>Gambar orang
-                <td rowspan="3" colspan="2"><%=rset.getString("conversationContent")%>
-
-            </tr>
-            <tr>
-                <td><%=rset.getString("sender")%>
-
-            </tr>
-            <tr>
-                <td><%=rset.getString("userType")%>                
-            </tr>
-            <tr>
-                <td>
-                <td>
-                <td align="right">#<%=rset.getString("conversationId")%>
-            </tr>
-            <tr>
-                <td>
-                <td>Replied on:
-                <td><%=rset.getString("conversationDate")%>
-            </tr>
-            <%
+                    </tr>  
+                    <tr>
+                         <td>Replied on:
+                        <td><%=rset.getString("conversationDate")%>
+                        <td align="right">#<%=rset.getString("conversationId")%>
+                    </tr>                       
+                </table>
+                <%
+                        }
                     }
-                }
-            %>
-            <tr>
-                <td>
-                <td colspan="2"><button id="myBtn">Reply to thread</button>
-            </tr>
-            </table>
-            <div id="myModal" class="modal">
+                %>
 
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>
+                <div class="row unifrom inner">
+                    <button id="myBtn" style="padding-right:20px;margin-right:5px">Reply to thread</button>
+                    <a href="forum.jsp" class="button">Back</a>
+                </div>
+
+
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>
                         <h1>Reply to: <%=fTitle%></h1>
                         <form action="forumReply">
                             <%
-                                out.print("<input type=\"text\" name=\"forumId\" value="+fId+" hidden>");
+                                out.print("<input type=\"hidden\" name=\"forumId\" value=" + fId + ">");
                             %>
-                            <textarea name="reply"></textarea>
+                            <textarea style="margin-bottom:5px" name="reply"></textarea>
                             <input type="submit" value="reply">
                         </form>
-                    </p>
-                </div>
+                        </p>
+                    </div>
 
+                </div>
             </div>
+        </div>
     </body>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+
     <script>
 // Get the modal
         var modal = document.getElementById("myModal");

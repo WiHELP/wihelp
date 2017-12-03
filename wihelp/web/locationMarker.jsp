@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body>        
         <div id='map'></div>
         <div id="current">Nothing yet...</div>
 
@@ -29,17 +29,16 @@
         <script>
             var markers = [];
             function map() {
-                var myLatlng = {lat: -25.363, lng: 131.044};
+                var myLatlng = {lat: 1.558589, lng: 103.637171};
 
                 var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 4,
+                    zoom: 14,
                     center: myLatlng
                 });
                 var marker = new google.maps.Marker({
                     position: myLatlng,
                     map: map
                 });
-
 
                 map.addListener("click", function (event) {
                     if (marker) {
@@ -58,6 +57,6 @@
 
         </script>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgbms2OQnqOyeY5qRUpHTU2Tz2XtrIpgk&callback=map"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgbms2OQnqOyeY5qRUpHTU2Tz2XtrIpgk&libraries=places&callback=map"></script>
     </body>
 </html>

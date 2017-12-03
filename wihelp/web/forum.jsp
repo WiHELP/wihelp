@@ -13,6 +13,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="assets/css/main.css" />
+
         <style>
             /* The Modal (background) */
             .modal {
@@ -31,7 +33,7 @@
 
             /* Modal Content */
             .modal-content {
-                background-color: #fefefe;
+                background-color: #282626;
                 margin: auto;
                 padding: 20px;
                 border: 1px solid #888;
@@ -53,10 +55,10 @@
                 cursor: pointer;
             }
         </style>
-        
+
         <%
             ResultSet rset = null;
-            try{
+            try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = null;
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
@@ -64,57 +66,88 @@
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         %>
     </head>
     <body>
-        <div>
-            <h1>Forum</h1>
-            <button id="myBtn">New Thread</button>
+       <section class="banner" role="banner">
+            <header id="header" class="alt">
+                <h2><a href="homepage/homeview.jsp">WiHELP</a></h2>
+                <nav>
+                    <a href="#menu">Menu</a>
+                </nav>
+            </header>
 
-            <div id="myModal" class="modal">
-
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <form method="post" action="createForum">
-                        Forum title:<input type="text" name="forumTitle">
-                        Forum body:<textarea type="text" name="forumContent"></textarea>
-                        
-                        <input type="submit">
-                    </form>
+            <nav id="menu">
+                <div class="inner">
+                    <h2>Menu</h2>
+                    <ul class="links">
+                        <li><a href="homepage/homeview.jsp">Home</a></li>
+                        <!--<li><a href="Login.jsp">Log In</a></li>
+                        <li><a href="register.jsp">GET STARTED</a></li>-->
+                    </ul>
+                    <a href="#" class="close">Close</a>
                 </div>
+            </nav>
+        </section>
+        <div class="wrapper">
+            <div class="inner">
+                 
+                <div>
+                    <h1>Forum</h1>
+                    <button id="myBtn">New Thread</button>
 
-            </div>
-            <table>                
-            <%
-                String forumid = "";
-                while(rset.next()){
-                    String title = rset.getString("forumTitle");
-                    String starter = rset.getString("startUser");
-                    String fId = rset.getString("forumId");
-                    if(!forumid.equals(fId)){
-                        forumid = fId;
-                        %>
-                            
-                        <tr>
-                                <td rowspan="2"><%out.print("<a href=forumThread.jsp?forumid="+fId+"&forumtitle="+title+">"+title+"</a>");%>
-                                <td>Start date: <%=rset.getString("startDate")%>
-                            </tr>
-                            <tr>
-                                <td>Start by: <%=starter%>
-                            </tr>
-                            
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <form method="post" action="createForum">
+                                Forum title:<input type="text" name="forumTitle">
+                                Forum body:<textarea type="text" name="forumContent"></textarea>
+
+                                <input type="submit">
+                            </form>
+                        </div>
+
+                    </div>
+                    <table>                
                         <%
-                    }
-                }
-            %>
-            </table>
+                            String forumid = "";
+                            while (rset.next()) {
+                                String title = rset.getString("forumTitle");
+                                String starter = rset.getString("startUser");
+                                String fId = rset.getString("forumId");
+                                if (!forumid.equals(fId)) {
+                                    forumid = fId;
+                        %>
+
+                        <tr>
+                            <td rowspan="2"><%out.print("<a href='forumThread.jsp?forumid=" + fId + "&forumtitle=" + title + "'>" + title + "</a>");%>
+                            <td>Start date: <%=rset.getString("startDate")%>
+                        </tr>
+                        <tr>
+                            <td>Start by: <%=starter%>
+                        </tr>
+
+                        <%
+                                }
+                            }
+                        %>
+                    </table>
+                </div>
+            </div>
         </div>
     </body>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+
     <script>
 // Get the modal
         var modal = document.getElementById("myModal");

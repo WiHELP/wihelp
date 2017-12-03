@@ -89,7 +89,7 @@
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
     <script>
-      // This example adds a search box to a map, using the Google Place Autocomplete
+       // This example adds a search box to a map, using the Google Place Autocomplete
       // feature. People can enter geographical searches. The search box will return a
       // pick list containing a mix of places and predicted search terms.
 
@@ -103,7 +103,7 @@
           zoom: 13,
           mapTypeId: 'roadmap'
         });
-
+        
         // Create the search box and link it to the UI element.
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
@@ -163,9 +163,8 @@
           map.fitBounds(bounds);
         });
       }
-
     </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgbms2OQnqOyeY5qRUpHTU2Tz2XtrIpgk&callback=initAutocomplete"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgbms2OQnqOyeY5qRUpHTU2Tz2XtrIpgk&libraries=places&callback=initAutocomplete"></script>
         <!--
         To use this code on your website, get a free API key from Google.
         Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp

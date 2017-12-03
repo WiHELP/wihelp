@@ -47,6 +47,8 @@
                 color: #000;
                 text-decoration: none;
                 cursor: pointer;
+                
+             
             }
         </style>
 
@@ -61,6 +63,7 @@
                 <span class="close">&times;</span>
                 <h3 class="major">Share Event</h3>
                 <form method="post" action="formEvent">
+                   
                     <div class="row uniform">
                         <div class="6u 12u(xsmall)">
                             <label for="eventName">Event Name</label>
@@ -70,13 +73,19 @@
                             <label for="eventDate">Date</label>
                             <input type="text" name="eventDate" id="eventDate" required />
                         </div>
-                        <div class="12u">
-                            <label for="eventLocation">Location</label>
-                            <input type="text" name="eventLocation" id="eventLocation" required />
+                        <div class="6u 12u(small)">
+                            <label for="eventLocationName">Location Name</label>                             
+                            <input type="text" name="eventLocationName" id="eventLocationName" required />                            
+                        </div>
+                        <div class="6u 12u(small)">
+                            <label for="eventLocationPos">Location Position</label>                             
+                            <input type="text" name="eventLocationPos" id="eventLocationPos" readonly />
+                            <a id="myBtn2"class="button small">Pick Position</a>
                         </div>
                     </div>  
                     <br>
                     <div class="12u">
+                        
                         <label for="description">Event Description</label>
                         <textarea name="description" id="description" rows="6"></textarea>
                     </div>
@@ -90,7 +99,7 @@
                 </form>
             </div>                                
         </div>
-
+       
         <script>
             // Get the modal
             var modal = document.getElementById('myModal');
