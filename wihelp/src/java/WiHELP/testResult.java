@@ -42,7 +42,7 @@ public class testResult extends HttpServlet {
   //      for(int b=1; b<22; b++){
   //                 out.print(answer[b]+"<br>");
   //            }
-            
+           
         for (int c = 1; c < 22; c++) {
             if (c == 1 || c == 6 || c == 8 || c == 11 || c == 12 || c == 14 || c == 18) {
                 stress += answer[c];
