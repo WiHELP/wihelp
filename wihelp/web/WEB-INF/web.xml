@@ -40,6 +40,10 @@
         <servlet-name>changeSetting</servlet-name>
         <servlet-class>WiHELP.changeSetting</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>WiHELP.logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>changeSetting</servlet-name>
         <url-pattern>/changeSetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

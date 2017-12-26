@@ -69,7 +69,7 @@
                         <li><a href="chat.jsp">Chat</a></li>
                         <li><a href="forum.jsp">Forum</a></li>
                         <li><a href="listevent.jsp">Event</a></li>
-                        <li><a href="#">LogOut</a></li>
+                        <li><a href="logout">LogOut</a></li>
                     </ul>
                     <a href="#" class="close">Close</a>
                 </div>
