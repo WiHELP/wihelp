@@ -52,28 +52,46 @@ public class approve extends HttpServlet {
                     + "<body>\n"
                     + "<jsp:include page=\"homepage/homepageHeader.jsp\"></jsp:include>"
                     + " <div class=\"wrapper\">"
+                    + "<header id=\"header\" class=\"alt\">\n"
+                    + "                <h1><a href=\"homepage.jsp\">WiHELP</a></h1>\n"
+                    + "                <nav>\n"
+                    + "                    <a href=\"#menu\">Menu</a>\n"
+                    + "                </nav>\n"
+                    + "            </header>\n"
+                    + "\n"
+                    + "            <!-- Menu -->\n"
+                    + "            <nav id=\"menu\">\n"
+                    + "                <div class=\"inner\">\n"
+                    + "                    <h2>Menu</h2>\n"
+                    + "                    <ul class=\"links\">\n"
+                    + "                        <li><a href=\"logout\">Logout</a></li>\n"
+                    + "                    </ul>\n"
+                    + "                    <a href=\"#\" class=\"close\">Close</a>\n"
+                    + "                </div>\n"
+                    + "            </nav>"
                     + "  <div class=\"inner\">"
                     + "   <section>"
                     + "     <h1 class=\"major\"><center>WiHELP</center></h1>"
                     + "         <div class=\"table-wrapper\">"
                     + "            <table class=\"alt\">"
                     + "                <thead>");
-                   
+
             out.print("<tr>"
                     + "<th/>Name"
                     + "<th/>License"
                     + "<th/>Status"
                     + "<th/>Match found in LKM database"
-                    + "<th/>Match found in LKM database"
+                    + "<th/>Action Taken"
                     + "</tr>");
             while (rset.next()) {
 
                 ResultSet rset2 = stmt2.executeQuery(str2);
                 String name = rset.getString("name");
+                String nameData = null;
                 String license = rset.getString("license");
                 String status = rset.getString("status");
                 out.print("<tbody>"
-                        +"<tr>"
+                        + "<tr>"
                         + "<td>"
                         + name
                         + "<td>"
@@ -84,11 +102,12 @@ public class approve extends HttpServlet {
                 boolean test = false;
                 while (rset2.next()) {
                     if (license.equals(rset2.getString("KB_No"))) {
+                        nameData = rset2.getString("Applicant_Name");
                         test = true;
                     }
                 }
                 if (test == true) {
-                    out.print("Found");
+                    out.print("Found for applicant<br>"+nameData);
                 } else {
                     out.print("Not Found");
                 }
@@ -97,18 +116,18 @@ public class approve extends HttpServlet {
                     out.print("<div class=\"\">"
                             + "<td>"
                             + "<form action=\"appCounselor\">"
-                            + "<input type=\"text\" name=\"license\" value=" + license + " hidden></input>"
+                            + "<input type=\"hidden\" name=\"license\" value=" + license + "></input>"
                             + "<input type=\"submit\" value=\"Approve\"></input>"
                             + "</form>"
                             + "<form action=\"rejCounselor\">"
-                            + "<input type=\"text\" name=\"license\" value=" + license + " hidden></input>"
+                            + "<input type=\"hidden\" name=\"license\" value=" + license + "></input>"
                             + "<input type=\"submit\" value=\"Reject\"></input>"
                             + "</form>"
                             + "</div>"
                             + "</tr>");
                 } else if (status.equals("Approved")) {
                     out.print("<td>"
-                            + "APPROVED"
+                            + "Approved"
                             + "</tr>");
                 } else if (status.equals("Rejected")) {
                     out.print("<td>"
@@ -124,6 +143,12 @@ public class approve extends HttpServlet {
                     + "                </div>\n"
                     + "            <div>\n"
                     + "        </div>\n"
+                    + "<script src=\"assets/js/skel.min.js\"></script>\n"
+                    + "        <script src=\"assets/js/jquery.min.js\"></script>\n"
+                    + "        <script src=\"assets/js/jquery.scrollex.min.js\"></script>\n"
+                    + "        <script src=\"assets/js/util.js\"></script>\n"
+                    + "        <!--[if lte IE 8]><script src=\"assets/js/ie/respond.min.js\"></script><![endif]-->\n"
+                    + "        <script src=\"assets/js/main.js\"></script>"
                     + "    </body>");
 
         } catch (Exception e) {

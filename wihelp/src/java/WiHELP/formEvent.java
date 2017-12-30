@@ -73,7 +73,7 @@ public class formEvent extends HttpServlet {
             stmt2.setString(4, eventLocation);
             stmt2.setString(5, eventPosition);
             stmt2.setString(6, description);
-            
+            out.print("test");
             stmt2.executeUpdate();
             out.print("test");
             response.sendRedirect("listevent.jsp");

@@ -5,14 +5,11 @@ package WiHELP;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 /**
  *
@@ -32,7 +29,7 @@ public class register extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         PreparedStatement stmt = null;
         PreparedStatement stmt2 = null;
         String user = request.getParameter("userType");
@@ -43,44 +40,50 @@ public class register extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String license = request.getParameter("license");
-        
+
         try (PrintWriter out = response.getWriter()) {
 
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection(
-               "jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
-           out.print(user);
+                    "jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
+            out.print(user);
             boolean stat = false;
-            if(user.equals("patient")){
-               
-                String sql = "INSERT into user values(?,?,?,?,?,?)";
+            String pString = null;
+            if (user.equals("patient")) {
+
+                try {
+                    String sql = "INSERT into user values(?,?,?,?,?,?)";
+                    stmt = conn.prepareStatement(sql);
+
+                    stmt.setString(1, username);
+                    stmt.setString(2, password);
+                    stmt.setString(3, name);
+                    stmt.setString(4, email);
+                    stmt.setInt(5, age);
+                    stmt.setString(6, "patient");
+
+                    stmt.executeUpdate();
+
+                    String sql2 = "INSERT into patient values(?,?,?)";
+                    stmt2 = conn.prepareStatement(sql2);
+
+                    stmt2.setString(1, username);
+                    stmt2.setString(2, address);
+                    stmt2.setString(3, "anonymous");
+
+                    stmt2.executeUpdate();
+
+                    pString = "Registration Successfull!";
+                    stat = true;
+                } catch (Exception e) {
+
+                }
+
+            } else if (user.equals("counselor")) {
+
+                String sql = "INSERT into counselorpending(username, password, name, age, email, license, status) values(?,?,?,?,?,?,?)";
                 stmt = conn.prepareStatement(sql);
-                
-                stmt.setString(1, username);
-                stmt.setString(2, password);
-                stmt.setString(3, name);
-                stmt.setString(4,email);
-                stmt.setInt(5, age);
-                stmt.setString(6, "patient");
-                
-                stmt.executeUpdate();
-                
-                String sql2 = "INSERT into patient values(?,?,?)";
-                stmt2 = conn.prepareStatement(sql2);
-                
-                stmt2.setString(1, username);
-                stmt2.setString(2, address);
-                stmt2.setString(3, "anonymous");
-               
-                stmt2.executeUpdate();
-                
-                stat = true;
-            }
-            else if(user.equals("counselor")){
-                 
-                String sql = "INSERT into counselorpending values(?,?,?,?,?,?,?)";
-                stmt = conn.prepareStatement(sql);
-                
+
                 stmt.setString(1, username);
                 stmt.setString(2, password);
                 stmt.setString(3, name);
@@ -88,18 +91,21 @@ public class register extends HttpServlet {
                 stmt.setString(5, email);
                 stmt.setString(6, license);
                 stmt.setString(7, "Pending");
-                
+
                 int row1 = stmt.executeUpdate();
-                
+
+                pString = "Registration successfull and awaits approval from Admin!";
                 stat = true;
             }
-            
-            if(stat == true){
-                
+            HttpSession session = request.getSession();
+            if (stat == true) {
+                session.setAttribute("PString", pString);
                 response.sendRedirect("homepage/Login.jsp");
+            } else {
+                session.setAttribute("PString", "Registration Failed!");
+                response.sendRedirect("homepage/register.jsp");
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

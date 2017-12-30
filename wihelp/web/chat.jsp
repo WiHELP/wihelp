@@ -40,7 +40,10 @@
                 margin: auto;
                 padding: 20px;
                 border: 1px solid #888;
-                width: 80%;
+                width: 25%;
+                max-height: 50%;
+                overflow-y: scroll;
+                overflow-x: hidden;
             }
 
             /* The Close Button */
@@ -111,7 +114,7 @@
                         setting = rsetset.getString("setting");
                     }
                 }
-           //     out.print(setting);
+                //     out.print(setting);
 
             } catch (Exception ex) {
                 out.println("Unable to connect to database.");
@@ -146,30 +149,40 @@
 
         <div class="wrapper">
             <div class="inner">
+
+
                 <%
                     if (user3.equals("patient")) {
                 %>
-                <button id="myBtn">New chat</button>
+                <div class="row"><div class="10u 12u"><h2 class="major">Chatting</h2></div><div class="2u 12u" style="direction:rtl;"><button id="myBtn">New chat</button></div></div>
+
 
                 <div id="myModal" class="modal">
 
                     <!-- Modal content -->
                     <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p>
-                            <%
-                                while (rset2.next()) {
-                                    String to = rset2.getString("username");
-                                    String to2 = rset2.getString("name");
-                                    out.print("<a href='newChat.jsp?sendto=" + to + "&sendto2=" + to2 + "' class=\"button \">" + to2 + "</a>");
-                                }
+                        <span class="close"></span>
+                        <h1>Counselor</h1>
+                        <center><p>
+                                <%
+                                    while (rset2.next()) {
+                                        String to = rset2.getString("username");
+                                        String to2 = rset2.getString("name");
+                                        out.print("<a style=\"margin-bottom:5px;\"href='newChat.jsp?sendto=" + to + "&sendto2=" + to2 + "' class=\"button \">" + to2 + "</a><br>");
+                                    }
 
-                            %>
-                        </p>
+                                %>
+                            </p>
+                        </center>
                     </div>
 
                 </div>
-                <%                        }
+                <%                        } else {
+                %>
+                <div class="10u 12u"><h2 class="major">Chatting</h2></div>
+                
+                <%
+                }
                 %>
                 <table border="1">
                     <%
@@ -208,11 +221,9 @@
                     %>
                     <tr>
                         <td rowspan="2" style="width:150px;height:150px"><img style="height:auto;width:auto;max-height:150px;max-width:150px;"src="images/user.jpg">
-                        <td><%
-                            if (setting.equals("anonymous")) {
-                                    out.print("anonymous");
-                                }
-                            else if (prevReceiver.equals(user)) {
+                        <td><%                            if (setting.equals("anonymous")) {
+                                out.print("anonymous");
+                            } else if (prevReceiver.equals(user)) {
                                 out.print(prevSender);
                             } else if (prevSender.equals(user)) {
                                 out.print(prevReceiver);
@@ -271,10 +282,9 @@
                     <tr>
                         <td rowspan="2" style="width:150px;height:150px" ><img style="height:auto;width:auto;max-height:150px;max-width:150px;"src="images/user.jpg">
                         <td><%
-                            if(setting.equals("anonymous")){
+                            if (setting.equals("anonymous")) {
                                 out.print("anonymous");
-                            }
-                            else if (receiver.equals(user)) {
+                            } else if (receiver.equals(user)) {
                                 out.print(sender);
                             } else if (sender.equals(user)) {
                                 out.print(receiver);
@@ -345,7 +355,7 @@
         var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+        var span = document.getElementsByClassName("close")[1];
 
 // When the user clicks the button, open the modal 
         btn.onclick = function () {

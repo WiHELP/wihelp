@@ -140,12 +140,14 @@
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <p>
-                        <h1>Reply to: <%=fTitle%></h1>
+                        <h1>Reply to: <%=fTitle%> </h1>
+                        
                         <form action="forumReply">
                             <%
                                 out.print("<input type=\"hidden\" name=\"forumId\" value=" + fId + ">");
                             %>
-                            <textarea style="margin-bottom:5px" name="reply"></textarea>
+                            <textarea style="margin-bottom:5px" name="reply" maxlength="500"></textarea>
+                            (500 character max)<br>
                             <input type="submit" value="reply">
                         </form>
                         </p>

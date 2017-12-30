@@ -98,8 +98,7 @@
             <div class="inner">
                  
                 <div>
-                    <h1>Forum</h1>
-                    <button id="myBtn">New Thread</button>
+                    <div class="row"><div class="9u 12u"><h2 class="major">Forum</h2></div><div class="3u 12u" style="direction:rtl;"><button id="myBtn">New Thread</button></div></div>
 
                     <div id="myModal" class="modal">
 
@@ -108,7 +107,7 @@
                             <span class="close">&times;</span>
                             <form method="post" action="createForum">
                                 Forum title:<input type="text" name="forumTitle">
-                                Forum body:<textarea type="text" name="forumContent"></textarea>
+                                Forum body:(500 character max)<textarea type="text" name="forumContent"maxlength="500"></textarea>
 
                                 <input type="submit">
                             </form>
@@ -158,7 +157,7 @@
         var btn = document.getElementById("myBtn");
 
         // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+        var span = document.getElementsByClassName("close")[1];
 
         // When the user clicks the button, open the modal 
         btn.onclick = function () {

@@ -72,6 +72,7 @@ public class createForum extends HttpServlet {
                 stmnt2.setString(5,user);
                 stmnt2.executeUpdate();
                 
+                
                 String sql3 = "insert into forumdetails values(?,?,?,?)";
                 stmnt2 = conn.prepareStatement(sql3);
                 stmnt2.setString(1,String.valueOf(count));
@@ -80,7 +81,7 @@ public class createForum extends HttpServlet {
                 stmnt2.setString(4,user);
 
                 stmnt2.executeUpdate();
-                
+                response.sendRedirect("forum.jsp");
                 
             }
             catch(Exception e){

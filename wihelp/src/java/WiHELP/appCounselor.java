@@ -48,7 +48,7 @@ public class appCounselor extends HttpServlet {
             ResultSet rset = stmt.executeQuery(sql);
             
             while(rset.next()){
-                String sql1 = "INSERT into user values(?,?,?,?,?)";
+                String sql1 = "INSERT into user values(?,?,?,?,?,?)";
                 stmt1 = conn.prepareStatement(sql1);
                 
                 stmt1.setString(1, rset.getString("username"));
@@ -56,9 +56,9 @@ public class appCounselor extends HttpServlet {
                 stmt1.setString(3, rset.getString("name"));
                 stmt1.setString(4, rset.getString("email"));
                 stmt1.setInt(5, rset.getInt("age"));
-                stmt1.setString(5, "counselor");
-                
+                stmt1.setString(6, "counselor");                
             stmt1.executeUpdate();
+            
             out.print("test");
             String sql2 = "INSERT into counselor values(?,?)";
                 stmt2 = conn.prepareStatement(sql2);
@@ -75,7 +75,7 @@ public class appCounselor extends HttpServlet {
                 stmt3.setString(2, rset.getString("license"));
                 
                 stmt3.executeUpdate();
-            }
+            }            
             response.sendRedirect("approve");
         }
         catch(Exception e){
