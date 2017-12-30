@@ -78,7 +78,7 @@
                         <li><a href="chat.jsp">Chat</a></li>
                         <li><a href="forum.jsp">Forum</a></li>
                         <li><a href="listevent.jsp">Event</a></li>
-                        <li><a href="#">LogOut</a></li>
+                        <li><a href="logout">LogOut</a></li>
                     </ul>
                     <a href="#" class="close">Close</a>
                 </div>
@@ -128,13 +128,61 @@
         <div class="wrapper">
             <div class="inner">
                 <section>
+                    <h2> LEVEL OF SCORES </h2>
+                    <div class="table-wrapper">
+                        <table class="alt">
+                            <thead>
+                            <tr>
+                                <th> Level </th>
+                                <th> Stress Score </th>
+                                <th> Anxiety Score </th>
+                                <th> Depression Score </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td> Normal </td>
+                                <td> 0 - 7 </td>
+                                <td> 0 - 4 </td>
+                                <td> 0 - 5 </td>
+                            </tr>
+                            <tr>
+                                <td> Mild </td>
+                                <td> 8 - 9 </td>
+                                <td> 5- 6 </td>
+                                <td> 6 - 7 </td>
+                            </tr>
+                            <tr>
+                                <td> Moderate </td>
+                                <td> 10 - 13 </td>
+                                <td> 7 - 8 </td>
+                                <td> 8 - 10 </td>
+                            </tr>
+                            <tr>
+                                <td> Severe </td>
+                                <td> 14- 17 </td>
+                                <td> 9 - 10 </td>
+                                <td> 11 - 14 </td>
+                            </tr>
+                            <tr>
+                                <td> Extremely Severe </td>
+                                <td> More than 17 </td>
+                                <td> More than 10 </td>
+                                <td> More than 14 </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                            
+                <section>
                     <h2> RESULT OF DEPRESSION ANXIETY STRESS SCORE TEST </h2>
                     <div class="table-wrapper">
                         <table class="alt">
                             <thead>
                             <tr>
                                 <th> </th>
-                                <th> Stress </th>
+                                <th> Stress Score </th>
                                 <th> Anxiety </th>
                                 <th> Depression </th>
                             </tr>
@@ -156,7 +204,10 @@
                         </table>
                     </div>
                 </section>
+                            <center> <a href="dassTest.html" class="button">ANSWER SCREENING TEST AGAIN</a> </center>
             </div>
+            
+                            
       
         </div>
         </div>    
