@@ -28,27 +28,27 @@
             String user2 = (String) session.getAttribute("userSessionName");
             String user3 = (String) session.getAttribute("userType");
             String setting = "test";
-            
-            if(user3.equals("patient")){
-            ResultSet rset = null;
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = null;
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
-                //          if(!connection.isClosed())
-                //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
-                //          connection.close();
-                String sql = "Select setting from patient where username='"+user+"'";                
-                Statement stmnt = null;
-                stmnt = conn.createStatement();
-                rset = stmnt.executeQuery(sql);                
-                while(rset.next()) {
-                    setting = rset.getString("setting");
+
+            if (user3.equals("patient")) {
+                ResultSet rset = null;
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection conn = null;
+                    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
+                    //          if(!connection.isClosed())
+                    //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
+                    //          connection.close();
+                    String sql = "Select setting from patient where username='" + user + "'";
+                    Statement stmnt = null;
+                    stmnt = conn.createStatement();
+                    rset = stmnt.executeQuery(sql);
+                    while (rset.next()) {
+                        setting = rset.getString("setting");
+                    }
+
+                } catch (Exception ex) {
+                    out.println("Unable to connect to database.");
                 }
-                
-            } catch (Exception ex) {
-                out.println("Unable to connect to database.");
-            }
             }
         %>
     </head>
@@ -70,10 +70,54 @@
             <header id="header" class="alt">
                 <a href="homeview.jsp"><h2>WiHELP</h2></a>
                 <nav>
-                    <a href="#menu">Menu</a>
-                    <a href="../dassTest.html">
-                        <button id="myBtn" class="button">Screening Test</button>
-                    </a>
+                    
+
+                    <%
+                        String usertype = (String) session.getAttribute("userType");
+                        if (usertype.equals("patient"))
+                        {
+                            out.println("<a href='#menu'>Menu</a>");
+                            String username = (String) session.getAttribute("userSession");
+                            Statement stmt;
+                            
+                            try {
+                                Class.forName("com.mysql.jdbc.Driver");
+                            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
+                            stmt = conn.createStatement();
+                            
+                            String sql = "Select username from testresult where username='" + username + "'";
+                            ResultSet rset = stmt.executeQuery(sql);
+                            String u = null;
+                            
+                            while(rset.next())
+                            {
+                                u = rset.getString("username");
+                            }
+                            
+                            if (u == null)
+                            {
+                                 out.println("<a href='../dassTest.html'> <button id='myBtn' class='button'>Screening Test</button></a>");
+                            }
+                            
+                            else if (u != null)
+                            {
+                                out.println("<a href='../testResult.jsp'><button id='myBtn' class='button'>Screening Test</button></a>");
+                            }
+                          
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        }
+                        
+                        else if (usertype.equals("counselor"))
+                        {
+                            out.println("<a href='#menu'>Menu</a>");
+                        }
+                     
+                    %>
+                   
+
+                    
                 </nav>
             </header>
 
@@ -106,14 +150,13 @@
 
                 <div class="inner"> 
                     <h1 class="major"><center>WELCOME, <%= user%></center></h1>
-                    <%
-                        if(user3.equals("patient")){
-                            out.print("<center>Interaction Status: "+setting+"<a href=\"../changeSetting\" class=\"button small\" style=\"margin-left:5px\" id=\"changeBtn\">Change</a></center>");
-                        }
-                        else if(user3.equals("counselor")){
-                            out.print("<center>Counselor<center>");
-                    }
-                    %>
+                            <%
+                                if (user3.equals("patient")) {
+                                    out.print("<center>Interaction Status: " + setting + "<a href=\"../changeSetting\" class=\"button small\" style=\"margin-left:5px\" id=\"changeBtn\">Change</a></center>");
+                                } else if (user3.equals("counselor")) {
+                                    out.print("<center>Counselor<center>");
+                                }
+                            %>
                     <section>
                         <div class="box alt" style="margin-top: 10%;">
                             <div class="row uniform">
@@ -150,6 +193,6 @@
             </div>
         </div>
     </body>
-    
-    
+
+
 </html>
