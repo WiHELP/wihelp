@@ -180,9 +180,9 @@
                 <%                        } else {
                 %>
                 <div class="10u 12u"><h2 class="major">Chatting</h2></div>
-                
+
                 <%
-                }
+                    }
                 %>
                 <table border="1">
                     <%
@@ -221,7 +221,27 @@
                     %>
                     <tr>
                         <td rowspan="2" style="width:150px;height:150px"><img style="height:auto;width:auto;max-height:150px;max-width:150px;"src="images/user.jpg">
-                        <td><%                            if (setting.equals("anonymous")) {
+                        <td><%                            
+                            Class.forName("com.mysql.jdbc.Driver");
+                            Connection conn = null;
+                            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
+                            Statement stmnt2 = null;
+                            String sql2 = "Select name,user.username from user join counselor on user.username = counselor.username";
+                            stmnt2 = conn.createStatement();
+                            rset2 = stmnt2.executeQuery(sql2);
+
+                            if (user3.equals("counselor")) {
+                                String sqlsetting = "Select setting from patient where username='" + prevSender + "' or username = '"+prevReceiver+"'";
+                                Statement stmntset = null;
+                                stmntset = conn.createStatement();
+                                rsetset = stmntset.executeQuery(sqlsetting);
+
+                                while (rsetset.next()) {
+                                    setting = rsetset.getString("setting");
+                                }
+                            }
+
+                            if (setting.equals("anonymous")) {
                                 out.print("anonymous");
                             } else if (prevReceiver.equals(user)) {
                                 out.print(prevSender);
@@ -235,12 +255,10 @@
                         <td colspan="2"><%
                             if (prevReceiver.equals(user)) {
                                 try {
-                                    Class.forName("com.mysql.jdbc.Driver");
-                                    Connection conn = null;
+                                    Class.forName("com.mysql.jdbc.Driver");                                    
                                     conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
-
-                                    Statement stmnt2 = null;
-                                    String sql2 = "Select name from user where username = '" + prevSender + "'";
+                                    stmnt2 = null;
+                                    sql2 = "Select name from user where username = '" + prevSender + "'";
                                     stmnt2 = conn.createStatement();
                                     rset2 = stmnt2.executeQuery(sql2);
 
@@ -254,11 +272,11 @@
                             } else if (prevSender.equals(user)) {
                                 try {
                                     Class.forName("com.mysql.jdbc.Driver");
-                                    Connection conn = null;
+                                    conn = null;
                                     conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
 
-                                    Statement stmnt2 = null;
-                                    String sql2 = "Select name from user where username = '" + prevReceiver + "'";
+                                    stmnt2 = null;
+                                    sql2 = "Select name from user where username = '" + prevReceiver + "'";
                                     stmnt2 = conn.createStatement();
                                     rset2 = stmnt2.executeQuery(sql2);
 
@@ -282,6 +300,25 @@
                     <tr>
                         <td rowspan="2" style="width:150px;height:150px" ><img style="height:auto;width:auto;max-height:150px;max-width:150px;"src="images/user.jpg">
                         <td><%
+                            Class.forName("com.mysql.jdbc.Driver");
+                            Connection conn = null;
+                            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
+                            Statement stmnt2 = null;
+                            String sql2 = "Select name,user.username from user join counselor on user.username = counselor.username";
+                            stmnt2 = conn.createStatement();
+                            rset2 = stmnt2.executeQuery(sql2);
+
+                            if (user3.equals("counselor")) {
+                                String sqlsetting = "Select setting from patient where username='" + sender + "' or username = '"+receiver+"'";
+                                Statement stmntset = null;
+                                stmntset = conn.createStatement();
+                                rsetset = stmntset.executeQuery(sqlsetting);
+
+                                while (rsetset.next()) {
+                                    setting = rsetset.getString("setting");
+                                }
+                            }
+                            
                             if (setting.equals("anonymous")) {
                                 out.print("anonymous");
                             } else if (receiver.equals(user)) {
@@ -297,11 +334,11 @@
                             if (receiver.equals(user)) {
                                 try {
                                     Class.forName("com.mysql.jdbc.Driver");
-                                    Connection conn = null;
+                                    conn = null;
                                     conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
 
-                                    Statement stmnt2 = null;
-                                    String sql2 = "Select name from user where username = '" + sender + "'";
+                                    stmnt2 = null;
+                                    sql2 = "Select name from user where username = '" + sender + "'";
                                     stmnt2 = conn.createStatement();
                                     rset2 = stmnt2.executeQuery(sql2);
 
@@ -315,11 +352,11 @@
                             } else if (sender.equals(user)) {
                                 try {
                                     Class.forName("com.mysql.jdbc.Driver");
-                                    Connection conn = null;
+                                    conn = null;
                                     conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wihelp?useSSL=false", "root", "1234");
 
-                                    Statement stmnt2 = null;
-                                    String sql2 = "Select name from user where username = '" + receiver + "'";
+                                    stmnt2 = null;
+                                    sql2 = "Select name from user where username = '" + receiver + "'";
                                     stmnt2 = conn.createStatement();
                                     rset2 = stmnt2.executeQuery(sql2);
 
