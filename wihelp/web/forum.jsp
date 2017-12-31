@@ -139,6 +139,7 @@
                         %>
                     </table>
                 </div>
+                    <a href="homepage/homeview.jsp" class="button">Back</a>
             </div>
         </div>
     </body>

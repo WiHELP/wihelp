@@ -125,6 +125,7 @@
                             </table>
                             <ul class="actions">
                                 <li><button id="myBtn" class="button">Share Event</button></li>
+                                <a href="homepage/homeview.jsp" class="button">Back</a>
                             </ul>
 
                             <jsp:include page="formEvent.jsp"></jsp:include>

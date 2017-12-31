@@ -205,7 +205,8 @@
                             </table>
                         </div>
                     </section>
-                    <center> <a href="dassTest.html" class="button">ANSWER SCREENING TEST AGAIN</a> </center>
+                    <a href="dassTest.html" class="button">ANSWER SCREENING TEST AGAIN</a> &nbsp
+                     <a href="homepage/homeview.jsp" class="button">Back</a>
                 </div>
 
 
